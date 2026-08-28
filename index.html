@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buku Saku Digital Kabaret 3 Bahasa - Siswa SMPN 28 Bandung</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fredoka:wght@500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        display: ['"Fredoka"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            500: '#0284c7',
+                            600: '#0369a1',
+                            700: '#0c4a6e',
+                        },
+                        indo: {
+                            50: '#fff7ed',
+                            500: '#f97316',
+                            600: '#ea580c',
+                            700: '#c2410c',
+                        },
+                        sunda: {
+                            50: '#ecfdf5',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                        },
+                        english: {
+                            50: '#f5f3ff',
+                            500: '#8b5cf6',
+                            600: '#7c3aed',
+                            700: '#6d28d9',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.6);
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(148, 163, 184, 0.3);
+            border-radius: 9999px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: rgba(148, 163, 184, 0.5);
+        }
+        .glow-card {
+            box-shadow: 0 0 25px -5px rgba(2, 132, 199, 0.15);
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen font-sans antialiased selection:bg-sky-500 selection:text-white custom-scrollbar pb-16">
+
+    <!-- NAVBAR SISWA -->
+    <header class="border-b border-slate-800/80 bg-slate-900/90 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap items-center justify-between gap-3">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-amber-500 via-sky-500 to-emerald-500 flex items-center justify-center text-white text-lg shadow-lg shadow-sky-500/20">
+                    <i class="fa-solid fa-masks-theater"></i>
+                </div>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <span class="font-display text-lg font-bold text-white tracking-wide">KABARET ZONE</span>
+                        <span class="text-[10px] font-bold uppercase px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30">Kelas IX</span>
+                    </div>
+                    <p class="text-xs text-slate-400">SMP Negeri 28 Bandung • Portal Latihan & Materi Siswa</p>
+                </div>
+            </div>
+
+            <!-- Language Pill Bar -->
+            <div class="flex items-center bg-slate-950/80 p-1 rounded-xl border border-slate-800">
+                <button onclick="changeLang('indo')" id="btn-indo" class="lang-pill px-3 py-1.5 rounded-lg text-xs font-bold transition-all bg-indo-600 text-white shadow-sm flex items-center gap-1.5">
+                    <span>🇮🇩</span> Indo
+                </button>
+                <button onclick="changeLang('sunda')" id="btn-sunda" class="lang-pill px-3 py-1.5 rounded-lg text-xs font-bold transition-all text-slate-400 hover:text-white flex items-center gap-1.5">
+                    <span>🍃</span> Sunda
+                </button>
+                <button onclick="changeLang('english')" id="btn-english" class="lang-pill px-3 py-1.5 rounded-lg text-xs font-bold transition-all text-slate-400 hover:text-white flex items-center gap-1.5">
+                    <span>🇬🇧</span> English
+                </button>
+                <button onclick="changeLang('sinergi')" id="btn-sinergi" class="lang-pill px-3 py-1.5 rounded-lg text-xs font-bold transition-all text-slate-400 hover:text-white flex items-center gap-1.5">
+                    <span>✨</span> Sinergi 3in1
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION SISWA -->
+    <section class="relative overflow-hidden border-b border-slate-800/80 bg-gradient-to-b from-slate-900 to-slate-950 py-8 px-4 sm:px-6">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-6 relative z-10">
+            <div class="space-y-2 max-w-2xl">
+                <div id="hero-badge" class="inline-flex items-center gap-2 text-xs font-bold px-3 py-1 rounded-full bg-indo-500/20 text-indo-400 border border-indo-500/30">
+                    <i class="fa-solid fa-sparkles"></i> Siap Jadi Bintang Panggung Kabaret 15 Menit!
+                </div>
+                <h1 id="hero-title" class="text-2xl sm:text-3xl lg:text-4xl font-extrabold font-display text-white tracking-tight leading-tight">
+                    Materi Latihan Santai tapi Juara: Bahasa Indonesia
+                </h1>
+                <p id="hero-subtitle" class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                    Setiap pertemuan kelas cukup luangkan <strong>30 menit</strong> buat latihan bareng tim. Gak perlu bingung atau takut salah, ikuti tips seru dan contekan materi di bawah ini!
+                </p>
+            </div>
+
+            <!-- Quick Rule Card -->
+            <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 w-full md:w-80 shrink-0 shadow-xl">
+                <div class="text-xs font-bold text-amber-400 flex items-center gap-2 mb-2 font-display">
+                    <i class="fa-solid fa-stopwatch"></i> RAHASIA 30 MENIT KELAS:
+                </div>
+                <div class="space-y-2 text-xs text-slate-300">
+                    <div class="flex items-center gap-2 p-2 rounded-lg bg-slate-950/80 border border-slate-800/60">
+                        <span class="w-6 h-6 rounded-full bg-sky-500/20 text-sky-400 font-bold font-mono flex items-center justify-center text-[11px]">20'</span>
+                        <span><strong>Latihan Mandiri Tim:</strong> Fokus tuntaskan misi mingguanmu.</span>
+                    </div>
+                    <div class="flex items-center gap-2 p-2 rounded-lg bg-slate-950/80 border border-slate-800/60">
+                        <span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 font-bold font-mono flex items-center justify-center text-[11px]">10'</span>
+                        <span><strong>Cek & Saran Guru:</strong> Minta koreksi pelafalan & gerak.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN CONTAINER -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 py-6 space-y-8">
+
+        <!-- TAB NAVIGATOR SISWA -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 bg-slate-900/80 p-1.5 rounded-2xl border border-slate-800">
+            <button onclick="setTab('materi')" id="tab-materi" class="tab-btn py-2.5 px-3 rounded-xl text-xs font-bold transition-all bg-sky-600 text-white shadow flex items-center justify-center gap-2">
+                <i class="fa-solid fa-graduation-cap"></i> Modul & Contekan
+            </button>
+            <button onclick="setTab('peran')" id="tab-peran" class="tab-btn py-2.5 px-3 rounded-xl text-xs font-bold transition-all text-slate-400 hover:text-white flex items-center justify-center gap-2">
+                <i class="fa-solid fa-user-astronaut"></i> Pilih Peranmu (6 Divisi)
+            </button>
+            <button onclick="setTab('misi')" id="tab-misi" class="tab-btn py-2.5 px-3 rounded-xl text-xs font-bold transition-all text-slate-400 hover:text-white flex items-center justify-center gap-2">
+                <i class="fa-solid fa-list-check"></i> 8 Misi Pertemuan
+            </button>
+            <button onclick="setTab('sos')" id="tab-sos" class="tab-btn py-2.5 px-3 rounded-xl text-xs font-bold transition-all text-slate-400 hover:text-white flex items-center justify-center gap-2">
+                <i class="fa-solid fa-lightbulb"></i> Tips Darurat & Trik
+            </button>
+        </div>
+
+        <!-- ========================================================================= -->
+        <!-- TAB 1: MODUL & CONTEKAN PRAKTIK SISWA -->
+        <!-- ========================================================================= -->
+        <div id="view-materi" class="tab-content space-y-6">
+            
+            <!-- Dynamic Content Box based on Language -->
+            <div id="dynamic-learning-content" class="space-y-6">
+                <!-- Injected via JavaScript -->
+            </div>
+
+        </div>
+
+        <!-- ========================================================================= -->
+        <!-- TAB 2: PANDUAN PERAN (6 DIVISI SISWA) -->
+        <!-- ========================================================================= -->
+        <div id="view-peran" class="tab-content hidden space-y-6">
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5">
+                <h3 class="text-base font-bold font-display text-white mb-1">
+                    Kamu Bagian Divisi Apa di Kelasmu? (Total 34 Siswa)
+                </h3>
+                <p class="text-xs text-slate-400">
+                    Klik kartu divisimu di bawah ini untuk melihat tugas santai tapi penting yang bikin kelasmu kompak dan keren!
+                </p>
+            </div>
+
+            <!-- Role Selector Buttons -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5" id="role-selector-bar">
+                <button onclick="selectRole(0)" class="role-btn active p-3 rounded-xl border bg-sky-950/60 border-sky-500 text-sky-300 text-center text-xs font-bold transition-all flex flex-col items-center gap-1.5">
+                    <i class="fa-solid fa-bullhorn text-base"></i>
+                    <span>Pengisi Suara (VO)</span>
+                    <span class="text-[10px] font-mono text-slate-400">6 Siswa</span>
+                </button>
+                <button onclick="selectRole(1)" class="role-btn p-3 rounded-xl border bg-slate-900 border-slate-800 text-slate-400 hover:text-white text-center text-xs font-bold transition-all flex flex-col items-center gap-1.5">
+                    <i class="fa-solid fa-masks-theater text-base"></i>
+                    <span>Aktor Panggung</span>
+                    <span class="text-[10px] font-mono text-slate-400">14 Siswa</span>
+                </button>
+                <button onclick="selectRole(2)" class="role-btn p-3 rounded-xl border bg-slate-900 border-slate-800 text-slate-400 hover:text-white text-center text-xs font-bold transition-all flex flex-col items-center gap-1.5">
+                    <i class="fa-solid fa-pen-nib text-base"></i>
+                    <span>Penulis Naskah</span>
+                    <span class="text-[10px] font-mono text-slate-400">3 Siswa</span>
+                </button>
+                <button onclick="selectRole(3)" class="role-btn p-3 rounded-xl border bg-slate-900 border-slate-800 text-slate-400 hover:text-white text-center text-xs font-bold transition-all flex flex-col items-center gap-1.5">
+                    <i class="fa-solid fa-clapperboard text-base"></i>
+                    <span>Sutradara & Ketua</span>
+                    <span class="text-[10px] font-mono text-slate-400">3 Siswa</span>
+                </button>
+                <button onclick="selectRole(4)" class="role-btn p-3 rounded-xl border bg-slate-900 border-slate-800 text-slate-400 hover:text-white text-center text-xs font-bold transition-all flex flex-col items-center gap-1.5">
+                    <i class="fa-solid fa-sliders text-base"></i>
+                    <span>Tim Audio Musik</span>
+                    <span class="text-[10px] font-mono text-slate-400">2 Siswa</span>
+                </button>
+                <button onclick="selectRole(5)" class="role-btn p-3 rounded-xl border bg-slate-900 border-slate-800 text-slate-400 hover:text-white text-center text-xs font-bold transition-all flex flex-col items-center gap-1.5">
+                    <i class="fa-solid fa-palette text-base"></i>
+                    <span>Properti & Kostum</span>
+                    <span class="text-[10px] font-mono text-slate-400">6 Siswa</span>
+                </button>
+            </div>
+
+            <!-- Active Role Details Card -->
+            <div id="role-details-card" class="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 glow-card transition-all">
+                <!-- Injected via JS -->
+            </div>
+        </div>
+
+        <!-- ========================================================================= -->
+        <!-- TAB 3: 8 MISI PERTEMUAN (TRACKER SISWA) -->
+        <!-- ========================================================================= -->
+        <div id="view-misi" class="tab-content hidden space-y-6">
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 flex flex-wrap items-center justify-between gap-4">
+                <div>
+                    <h3 class="text-base font-bold font-display text-white">
+                        Checklist Misi 8 Pertemuan @ 30 Menit
+                    </h3>
+                    <p class="text-xs text-slate-400">
+                        Cukup selesaikan 1 target kecil setiap pertemuan di kelas. Centang jika misi sudah kamu tuntaskan!
+                    </p>
+                </div>
+                <div class="bg-slate-950 px-3.5 py-1.5 rounded-xl border border-slate-800 font-mono text-xs font-bold text-sky-400" id="mission-counter">
+                    0 / 8 Misi Selesai
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5" id="mission-list-container">
+                <!-- Injected via JS -->
+            </div>
+        </div>
+
+        <!-- ========================================================================= -->
+        <!-- TAB 4: TIPS DARURAT & TRIK JITU -->
+        <!-- ========================================================================= -->
+        <div id="view-sos" class="tab-content hidden space-y-6">
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5">
+                <h3 class="text-base font-bold font-display text-white mb-1">
+                    Zona "Kalau Ada Masalah Ini, Harus Gimana?"
+                </h3>
+                <p class="text-xs text-slate-400">
+                    Solusi cepat dan trik rahasia biar pertunjukan kabaret tetap lancar, lucu, dan tepuk tangan meriah!
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                
+                <div class="p-4 bg-slate-900/80 border border-slate-800 rounded-2xl space-y-2">
+                    <div class="font-bold text-amber-400 flex items-center gap-2 text-sm">
+                        <i class="fa-solid fa-triangle-exclamation"></i> Masalah 1: "Aduh, pas di panggung aku lupa urutan kata di audio!"
+                    </div>
+                    <p class="text-slate-300 leading-relaxed">
+                        <strong>Trik Jitu:</strong> Jangan panik dan jangan diam mematung! Tetap gerakkan bibirmu mengikuti irama suara umum dan tunjukkan ekspresi wajah (tersenyum/kaget) serta gestur tangan yang mantap. Penonton biasanya lebih fokus ke ekspresi tubuhmu daripada detail suku kata per detik.
+                    </p>
+                </div>
+
+                <div class="p-4 bg-slate-900/80 border border-slate-800 rounded-2xl space-y-2">
+                    <div class="font-bold text-sky-400 flex items-center gap-2 text-sm">
+                        <i class="fa-solid fa-volume-xmark"></i> Masalah 2: "Hasil rekaman suara kami mendem / kresek-kresek!"
+                    </div>
+                    <p class="text-slate-300 leading-relaxed">
+                        <strong>Trik Jitu:</strong> Rekam di sudut ruangan yang banyak kain/gorden (kain menyerap gema). Jangan terlalu dekat dengan lubang mikrofon HP (beri jarak sekitar 10 cm agak miring). Ucapkan huruf vokal dengan mulut lebih terbuka agar suara bulat dan jernih.
+                    </p>
+                </div>
+
+                <div class="p-4 bg-slate-900/80 border border-slate-800 rounded-2xl space-y-2">
+                    <div class="font-bold text-emerald-400 flex items-center gap-2 text-sm">
+                        <i class="fa-solid fa-tape"></i> Masalah 3: "Properti kardus copot atau patah pas mau tampil!"
+                    </div>
+                    <p class="text-slate-300 leading-relaxed">
+                        <strong>Trik Jitu:</strong> Tim properti wajib selalu siap membawa lakban hitam tebal dan gunting di kantong panggung. Ingat prinsipnya: properti kabaret itu simbolis dan sederhana, yang penting penonton paham fungsinya (misal kardus bentuk HP atau laptop).
+                    </p>
+                </div>
+
+                <div class="p-4 bg-slate-900/80 border border-slate-800 rounded-2xl space-y-2">
+                    <div class="font-bold text-purple-400 flex items-center gap-2 text-sm">
+                        <i class="fa-solid fa-hourglass-end"></i> Masalah 4: "Waktu tampil takut molor lebih dari 15 menit!"
+                    </div>
+                    <p class="text-slate-300 leading-relaxed">
+                        <strong>Trik Jitu:</strong> Rahasianya ada di file master MP3! Saat mengedit audio, pastikan panjang file pas 14 menit 30 detik (sisakan 30 detik untuk salam penutup/curtain call). Selama audionya selesai, pementasan otomatis tepat waktu!
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <!-- JAVASCRIPT APP LOGIC -->
+    <script>
+        // DATA UNTUK SETIAP BAHASA
+        const studentData = {
+            indo: {
+                heroTitle: 'Materi Latihan Santai tapi Juara: Bahasa Indonesia',
+                heroSubtitle: 'Di pelajaran Bahasa Indonesia, tugas utamamu adalah menyusun cerita yang seru, dialog yang alami, dan latihan vokal yang jelas terdengar sampai barisan belakang.',
+                badge: '🇮🇩 Modul Praktik Bahasa Indonesia',
+                badgeClass: 'bg-indo-500/20 text-indo-400 border-indo-500/30',
+                sections: [
+                    {
+                        title: '1. Resep Bikin Dialog yang Enak Diucapkan & Gak Kaku',
+                        icon: 'fa-comments',
+                        badge: 'Untuk Penulis & Aktor',
+                        color: 'text-amber-400',
+                        bg: 'bg-amber-500/10 border-amber-500/30',
+                        body: `
+                            <p class="text-slate-300 mb-3">Jangan bikin kalimat yang terlalu panjang kayak membaca buku pelajaran. Buatlah dialog pendek yang biasa kamu ucapkan sehari-hari tapi tetap sopan.</p>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
+                                <div class="p-3 rounded-xl bg-slate-950 border border-slate-800">
+                                    <div class="text-rose-400 font-bold mb-1">❌ Terlalu Kaku / Kepanjangan:</div>
+                                    <p class="text-slate-400 italic">"Apakah kamu mengetahui bahwasanya kita harus segera menyelesaikan tugas proyek seni teater ini sebelum bel sekolah berbunyi?"</p>
+                                </div>
+                                <div class="p-3 rounded-xl bg-slate-950 border border-slate-800">
+                                    <div class="text-emerald-400 font-bold mb-1">✅ Enak Diucapkan & Pas Lip-Sync:</div>
+                                    <p class="text-slate-300 font-semibold italic">"Eits, jangan santai dulu! Waktu kita tinggal sedikit nih, yuk kita beresin propertinya sekarang!"</p>
+                                </div>
+                            </div>
+                            <div class="p-3 rounded-xl bg-slate-950/80 border border-slate-800 text-slate-300 text-xs font-mono">
+                                💡 <strong>Tips Penulis Naskah:</strong> Selalu tuliskan petunjuk akting di dalam kurung, contoh: <em>(Reza menoleh kaget sambil menunjuk ke pintu)</em>.
+                            </div>
+                        `
+                    },
+                    {
+                        title: '2. Latihan Vokal "AIUEO" & Artikulasi Huruf Mati',
+                        icon: 'fa-microphone-lines',
+                        badge: 'Khusus 6 Voice Over',
+                        color: 'text-sky-400',
+                        bg: 'bg-sky-500/10 border-sky-500/30',
+                        body: `
+                            <p class="text-slate-300 mb-3">Supaya rekaman suaramu empuk dan jelas, lakukan pemanasan mulut selama 2 menit sebelum mulai merekam di HP:</p>
+                            <div class="space-y-2 mb-3">
+                                <div class="p-2.5 rounded-xl bg-slate-950 border border-slate-800 flex items-center justify-between">
+                                    <span class="text-slate-300"><strong>Senam Mulut Huruf Vokal:</strong> Buka mulut lebar: <span class="text-sky-400 font-bold">A - I - U - E - O</span></span>
+                                    <span class="text-[11px] font-mono text-slate-500">Ulangi 5x</span>
+                                </div>
+                                <div class="p-2.5 rounded-xl bg-slate-950 border border-slate-800 flex items-center justify-between">
+                                    <span class="text-slate-300"><strong>Kejelasan Huruf Akhir:</strong> Bunyikan tegas: <span class="text-amber-400 font-bold">/-k/, /-t/, /-p/, /-s/</span></span>
+                                    <span class="text-[11px] font-mono text-slate-500">Contoh: Cepa<strong>t</strong>!</span>
+                                </div>
+                                <div class="p-2.5 rounded-xl bg-slate-950 border border-slate-800 flex items-center justify-between">
+                                    <span class="text-slate-300"><strong>Tongue Twister Santai:</strong> <em>"Kakak koki kikir kikuk kuku kaki kakek kaku"</em></span>
+                                    <span class="text-[11px] font-mono text-slate-500">Latih tempo</span>
+                                </div>
+                            </div>
+                        `
+                    },
+                    {
+                        title: '3. Trik "Over-Articulation" untuk Aktor di Panggung',
+                        icon: 'fa-face-laugh-beam',
+                        badge: 'Khusus 14 Aktor Panggung',
+                        color: 'text-emerald-400',
+                        bg: 'bg-emerald-500/10 border-emerald-500/30',
+                        body: `
+                            <p class="text-slate-300 mb-3">Karena kamu tidak bersuara langsung melainkan <em>lip-sync</em> dengan rekaman suara playback, ikuti 3 trik ini:</p>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                                <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 text-center space-y-1">
+                                    <div class="w-8 h-8 rounded-full bg-emerald-500/20 text-emerald-400 font-bold mx-auto flex items-center justify-center">1</div>
+                                    <div class="font-bold text-white">Buka Mulut 2x Lebih Lebar</div>
+                                    <p class="text-slate-400 text-[11px]">Gerakan bibir biasa gak kelihatan dari jauh. Sedikit lebihkan bukaan mulutmu!</p>
+                                </div>
+                                <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 text-center space-y-1">
+                                    <div class="w-8 h-8 rounded-full bg-emerald-500/20 text-emerald-400 font-bold mx-auto flex items-center justify-center">2</div>
+                                    <div class="font-bold text-white">Hafalkan 3 Kata Awal</div>
+                                    <p class="text-slate-400 text-[11px]">Ketahui kapan giliranmu bicara agar mulut terbuka tepat bareng dengan audionya.</p>
+                                </div>
+                                <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 text-center space-y-1">
+                                    <div class="w-8 h-8 rounded-full bg-emerald-500/20 text-emerald-400 font-bold mx-auto flex items-center justify-center">3</div>
+                                    <div class="font-bold text-white">Respons Temanmu</div>
+                                    <p class="text-slate-400 text-[11px]">Saat temanmu bicara di panggung, kamu harus merespons: mengangguk, tersenyum, atau kaget.</p>
+                                </div>
+                            </div>
+                        `
+                    }
+                ]
+            },
+
+            sunda: {
+                heroTitle: 'Materi Diajar Praktis: Basa Sunda Nu Merenah & Lucu',
+                heroSubtitle: 'Dina pangajaran Basa Sunda, urang diajar ngalarapkeun basa Sunda loma & lemes, lentong nu wirahma, artikulasi fonem [e, é, eu], sarta tata krama panggung.',
+                badge: '🍃 Modul Praktik Basa Sunda',
+                badgeClass: 'bg-sunda-500/20 text-sunda-400 border-sunda-500/30',
+                sections: [
+                    {
+                        title: '1. Contekan Undak-Usuk Basa: Kapan Pake Loma, Kapan Pake Lemes?',
+                        icon: 'fa-book-bookmark',
+                        badge: 'Pikeun Panulis Naskah & Aktor',
+                        color: 'text-emerald-400',
+                        bg: 'bg-emerald-500/10 border-emerald-500/30',
+                        body: `
+                            <p class="text-slate-300 mb-3">Dina naskah kabaret Sunda, tong sieun salah undak-usuk basa! Ieu rumus saderhanana:</p>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
+                                <div class="p-3 rounded-xl bg-slate-950 border border-slate-800">
+                                    <div class="text-amber-400 font-bold mb-1">🗣️ Basa Loma (Ka Babaturan Sakelas):</div>
+                                    <p class="text-slate-300"><em>"Manéh rék ka mana? Hayu atuh urang latihan kabaret bareng di kelas!"</em></p>
+                                    <span class="text-[11px] text-slate-500 block mt-1">Kecap: manéh, urang, dahar, indit, balik.</span>
+                                </div>
+                                <div class="p-3 rounded-xl bg-slate-950 border border-slate-800">
+                                    <div class="text-emerald-400 font-bold mb-1">🙏 Basa Lemes (Ka Guru / Kolot):</div>
+                                    <p class="text-slate-300"><em>"Hapunten Pa Guru, naha leres ieu naskah téks drama kedah dikempelkeun dinten ieu?"</em></p>
+                                    <span class="text-[11px] text-slate-500 block mt-1">Kecap: abdi, salira, tuang/neda, angkat, wangsul.</span>
+                                </div>
+                            </div>
+                        `
+                    },
+                    {
+                        title: '2. Cara Bener Ngabedakeun Fonem Vokal [e], [é], jeung [eu]',
+                        icon: 'fa-volume-high',
+                        badge: 'Pikeun 6 Pangisi Sora',
+                        color: 'text-amber-400',
+                        bg: 'bg-amber-500/10 border-amber-500/30',
+                        body: `
+                            <p class="text-slate-300 mb-3">Supados lentong Sundana henteu kaku atanapi cadel, cobian latihan 3 fonem ieu:</p>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                                <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 space-y-1">
+                                    <div class="font-bold text-amber-400 text-sm">1. Huruf [e] biasa</div>
+                                    <p class="text-slate-400 text-[11px]">Sora kawas dina kecap "enam".</p>
+                                    <p class="text-slate-200 font-mono text-xs">Conto: c<strong>e</strong>uk, l<strong>e</strong>mes, b<strong>e</strong>ne<strong>r</strong>.</p>
+                                </div>
+                                <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 space-y-1">
+                                    <div class="font-bold text-sky-400 text-sm">2. Huruf [é] taling</div>
+                                    <p class="text-slate-400 text-[11px]">Sora kawas dina kecap "bebek".</p>
+                                    <p class="text-slate-200 font-mono text-xs">Conto: t<strong>é</strong>r<strong>é</strong>h, b<strong>é</strong>b<strong>é</strong>r<strong>é</strong>s, h<strong>é</strong>jo.</p>
+                                </div>
+                                <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 space-y-1">
+                                    <div class="font-bold text-emerald-400 text-sm">3. Huruf [eu] khas</div>
+                                    <p class="text-slate-400 text-[11px]">Biwir datar, létah rada ditarik.</p>
+                                    <p class="text-slate-200 font-mono text-xs">Conto: r<strong>eu</strong><strong>eu</strong>s, b<strong>eu</strong>r<strong>eu</strong>m, h<strong>eu</strong>r<strong>eu</strong>y.</p>
+                                </div>
+                            </div>
+                        `
+                    },
+                    {
+                        title: '3. Pasemon Raray & Sikep Rengkuh di Luhur Panggung',
+                        icon: 'fa-masks-theater',
+                        badge: 'Pikeun 14 Aktor Panggung',
+                        color: 'text-sky-400',
+                        bg: 'bg-sky-500/10 border-sky-500/30',
+                        body: `
+                            <p class="text-slate-300 mb-3">Karakter Sunda mikaresep sipat <em>Someah Hadé ka Sémah</em> (ramah, pinuh imut, tur sopan):</p>
+                            <div class="space-y-2 text-xs text-slate-300">
+                                <div class="p-2.5 rounded-xl bg-slate-950 border border-slate-800 flex items-start gap-2">
+                                    <i class="fa-solid fa-thumbs-up text-emerald-400 mt-1"></i>
+                                    <span><strong>Sikep Rengkuh:</strong> Rada ngabongkokkeun awak saeutik bari leungeun katuhu rada nyodok ka hareup waktu ngaliwat hareupeun jalma loba.</span>
+                                </div>
+                                <div class="p-2.5 rounded-xl bg-slate-950 border border-slate-800 flex items-start gap-2">
+                                    <i class="fa-solid fa-face-smile-beam text-amber-400 mt-1"></i>
+                                    <span><strong>Pasemon Heureuy:</strong> Mun aya adegan bodor/lucu, ekspresikeun ku gerak awak nu lincah sarta mimik beungeut nu ngagelenyu seuri!</span>
+                                </div>
+                            </div>
+                        `
+                    }
+                ]
+            },
+
+            english: {
+                heroTitle: 'English Practice Guide: Sound Natural & Speak Confidently!',
+                heroSubtitle: 'In your English class sessions, focus on cool daily phrases, proper pronunciation & word stress, and rocking your lip-sync on stage.',
+                badge: '🇬🇧 English Practical Module',
+                badgeClass: 'bg-english-500/20 text-english-400 border-english-500/30',
+                sections: [
+                    {
+                        title: '1. Natural Conversational Cheat-Sheet (No More Literal Translations!)',
+                        icon: 'fa-quote-left',
+                        badge: 'For Scriptwriters & Actors',
+                        color: 'text-purple-400',
+                        bg: 'bg-purple-500/10 border-purple-500/30',
+                        body: `
+                            <p class="text-slate-300 mb-3">Use these awesome, natural everyday English expressions in your script:</p>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
+                                <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 space-y-1">
+                                    <div class="text-sky-400 font-bold">✨ Calling Attention & Encouragement:</div>
+                                    <ul class="text-slate-300 space-y-1 text-xs">
+                                        <li>• <em>"Listen up, guys! We've got a brilliant idea!"</em></li>
+                                        <li>• <em>"Don't worry, we're in this together!"</em></li>
+                                        <li>• <em>"You nailed it! Keep going!"</em></li>
+                                    </ul>
+                                </div>
+                                <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 space-y-1">
+                                    <div class="text-emerald-400 font-bold">🤝 Agreeing & Team Spirit:</div>
+                                    <ul class="text-slate-300 space-y-1 text-xs">
+                                        <li>• <em>"I couldn't agree more!"</em></li>
+                                        <li>• <em>"Teamwork makes the dream work!"</em></li>
+                                        <li>• <em>"Let's show them what we've got!"</em></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        `
+                    },
+                    {
+                        title: '2. Syllable Stress & Ending Sound Hacks',
+                        icon: 'fa-headphones-simple',
+                        badge: 'For 6 Voice-Over Stars',
+                        color: 'text-sky-400',
+                        bg: 'bg-sky-500/10 border-sky-500/30',
+                        body: `
+                            <p class="text-slate-300 mb-3">To make your recorded English sound clear and dynamic, master these two rules:</p>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
+                                <div class="p-3 rounded-xl bg-slate-950 border border-slate-800">
+                                    <div class="text-amber-400 font-bold mb-1">🎯 Word Stress (Tekankan Suku Kata):</div>
+                                    <p class="text-slate-400 text-xs">Make the capital letters louder and slightly longer:</p>
+                                    <p class="text-slate-200 font-mono text-xs mt-1">• <strong>TO-gether</strong> (bukan to-GE-ther)<br>• <strong>LAN-guage</strong><br>• <strong>PER-fect</strong></p>
+                                </div>
+                                <div class="p-3 rounded-xl bg-slate-950 border border-slate-800">
+                                    <div class="text-purple-400 font-bold mb-1">🔊 Final Consonants (Jangan Ditelan):</div>
+                                    <p class="text-slate-400 text-xs">Always pronounce the ending sounds clearly:</p>
+                                    <p class="text-slate-200 font-mono text-xs mt-1">• Practi<strong>ce</strong> /s/<br>• Frien<strong>d</strong> /nd/<br>• Grea<strong>t</strong> /t/</p>
+                                </div>
+                            </div>
+                        `
+                    },
+                    {
+                        title: '3. Sharp Mouth Shapes for English Lip-Syncing',
+                        icon: 'fa-wand-magic-sparkles',
+                        badge: 'For 14 Stage Performers',
+                        color: 'text-emerald-400',
+                        bg: 'bg-emerald-500/10 border-emerald-500/30',
+                        body: `
+                            <p class="text-slate-300 mb-3">English words look different on your lips compared to Indonesian. Practice these mouth shapes in front of a mirror:</p>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
+                                <div class="p-2.5 rounded-xl bg-slate-950 border border-slate-800">
+                                    <span class="font-bold text-sky-400 block mb-1">/th/ Sound (Think/Thank)</span>
+                                    <p class="text-slate-400 text-[11px]">Ujung lidah terlihat sedikit di antara gigi atas dan bawah.</p>
+                                </div>
+                                <div class="p-2.5 rounded-xl bg-slate-950 border border-slate-800">
+                                    <span class="font-bold text-purple-400 block mb-1">/w/ Sound (We/World)</span>
+                                    <p class="text-slate-400 text-[11px]">Bibir dimajukan membulat ke depan (*pursed lips*).</p>
+                                </div>
+                                <div class="p-2.5 rounded-xl bg-slate-950 border border-slate-800">
+                                    <span class="font-bold text-emerald-400 block mb-1">/f/ & /v/ (Future/Voice)</span>
+                                    <p class="text-slate-400 text-[11px]">Gigi atas menyentuh lembut bibir bawah bagian dalam.</p>
+                                </div>
+                            </div>
+                        `
+                    }
+                ]
+            },
+
+            sinergi: {
+                heroTitle: 'Harmonisasi Sinergi 3 Bahasa: Cara Nyambungin Babak 1, 2, & 3',
+                heroSubtitle: 'Cara cerdas menggabungkan Bahasa Indonesia, Basa Sunda, dan Bahasa Inggris dalam pementasan 15 menit tanpa terasa patah atau aneh!',
+                badge: '✨ Panduan Integrasi 3in1',
+                badgeClass: 'bg-sky-500/20 text-sky-400 border-sky-500/30',
+                sections: [
+                    {
+                        title: '1. Pembagian Waktu Babak (Total 15 Menit Pas!)',
+                        icon: 'fa-chart-pie',
+                        badge: 'Peta Waktu Panggung',
+                        color: 'text-amber-400',
+                        bg: 'bg-amber-500/10 border-amber-500/30',
+                        body: `
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+                                <div class="p-3 rounded-xl bg-slate-950 border border-slate-800">
+                                    <div class="font-bold text-amber-400 mb-1">Babak 1: Bahasa Indonesia</div>
+                                    <div class="text-[11px] font-mono text-slate-400 mb-2">⏱️ Menit 0.00 – 4.00 (4 Menit)</div>
+                                    <p class="text-slate-300">Pengenalan tokoh, situasi masalah, percakapan sehari-hari yang akrab.</p>
+                                </div>
+                                <div class="p-3 rounded-xl bg-slate-950 border border-slate-800">
+                                    <div class="font-bold text-emerald-400 mb-1">Babak 2: Basa Sunda</div>
+                                    <div class="text-[11px] font-mono text-slate-400 mb-2">⏱️ Menit 4.00 – 9.00 (5 Menit)</div>
+                                    <p class="text-slate-300">Adegan keluarga/lingkungan Sunda, humor sehat, kesantunan budaya.</p>
+                                </div>
+                                <div class="p-3 rounded-xl bg-slate-950 border border-slate-800">
+                                    <div class="font-bold text-purple-400 mb-1">Babak 3: English + Penutup</div>
+                                    <div class="text-[11px] font-mono text-slate-400 mb-2">⏱️ Menit 9.00 – 14.30 (5.5 Menit)</div>
+                                    <p class="text-slate-300">Pesan persahabatan global, resolusi masa depan, diakhiri tarian penutup.</p>
+                                </div>
+                            </div>
+                        `
+                    },
+                    {
+                        title: '2. Cara Jitu Pindah Bahasa Supaya Gak Terasa Dipaksakan',
+                        icon: 'fa-shuffle',
+                        badge: 'Trik Penulis & Sutradara',
+                        color: 'text-sky-400',
+                        bg: 'bg-sky-500/10 border-sky-500/30',
+                        body: `
+                            <p class="text-slate-300 mb-3">Gunakan trik <strong>"Jembatan Situasi"</strong> agar perpindahan bahasa terdengar natural:</p>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                                <div class="p-3 rounded-xl bg-slate-950 border border-slate-800">
+                                    <div class="font-bold text-sky-400 mb-1">Jembatan Indo ke Sunda:</div>
+                                    <p class="text-slate-300">Saat tokoh pulang ke rumah atau bertemu sesepuh/warga desa: <em>"Wah, kalau urusan ini mah kita harus minta wejangan Aki dulu!"</em> (Langsung masuk ke dialog Basa Sunda).</p>
+                                </div>
+                                <div class="p-3 rounded-xl bg-slate-950 border border-slate-800">
+                                    <div class="font-bold text-purple-400 mb-1">Jembatan Sunda ke English:</div>
+                                    <p class="text-slate-300">Saat tokoh membahas tugas presentasi sekolah atau mimpi masa depan: <em>"Bener pisan Ceu, let's show the world that our culture is awesome!"</em> (Langsung beralih ke percakapan Inggris).</p>
+                                </div>
+                            </div>
+                        `
+                    }
+                ]
+            }
+        };
+
+        // DATA 6 DIVISI KERJA SISWA
+        const roleData = [
+            {
+                title: 'Pengisi Suara (Voice Over)',
+                count: '6 Siswa',
+                icon: 'fa-microphone-lines',
+                color: 'text-sky-400',
+                roleDesc: 'Kamu adalah suara emas dari kabaret! Karakter panggung hidup karena intonasi dan rekaman vokalmu yang jernih dan ekspresif.',
+                checklist: [
+                    'Latihan membaca naskah dengan emosi (gembira, panik, bijak, lucu).',
+                    'Rekam vokal di ruangan hening, beri jeda 1 detik di setiap pergantian kalimat.',
+                    'Pastikan artikulasi huruf akhir /-k, -t, -p, -s/ dan fonem khas terdengar tegas.'
+                ],
+                secretTip: '💡 <strong>Trik Rahasia:</strong> Saat rekaman suara, tetaplah ikut tersenyum saat membaca dialog gembira, karena senyumanmu akan terdengar di warna suaramu!'
+            },
+            {
+                title: 'Aktor Panggung & Penari Latar',
+                count: '14 Siswa',
+                icon: 'fa-masks-theater',
+                color: 'text-emerald-400',
+                roleDesc: 'Kamu adalah bintang yang memukau mata penonton! Tugasmu mencocokkan gerak bibir (lip-sync) secara presisi dengan trek audio dan berakting heboh.',
+                checklist: [
+                    'Hafalkan naskah kata per kata agar tahu persis kapan mulut harus terbuka.',
+                    'Lakukan gerakan mulut 2x lebih lebar (over-articulation) dan mimik ekspresif.',
+                    'Pahami denah panggung (blocking): kapan masuk panggung, berdiri di mana, dan kapan keluar.'
+                ],
+                secretTip: '💡 <strong>Trik Rahasia:</strong> Jangan pernah membelakangi penonton! Selalu arahkan tubuhmu menyerong 45 derajat ke arah kursi penonton.'
+            },
+            {
+                title: 'Tim Penulis Naskah Dialog',
+                count: '3 Siswa',
+                icon: 'fa-pen-nib',
+                color: 'text-amber-400',
+                roleDesc: 'Kamu adalah arsitek cerita! Tugasmu merangkai percakapan 3 babak yang nyambung, lucu, bermakna, dan mudah diucapkan teman-temanmu.',
+                checklist: [
+                    'Bagi naskah menjadi 3 babak: Orientasi (Indo), Komplikasi (Sunda), Resolusi (English).',
+                    'Coret kalimat-kalimat yang kepanjangan agar tidak melebihi durasi 15 menit.',
+                    'Tulis petunjuk akting di dalam kurung untuk memandu gerakan aktor.'
+                ],
+                secretTip: '💡 <strong>Trik Rahasia:</strong> Bacakan dialogmu dengan keras bersama teman satu tim. Kalau terasa ngos-ngosan saat membaca, berarti kalimatnya harus dipotong lebih pendek!'
+            },
+            {
+                title: 'Sutradara & Ketua Projek Kelas',
+                count: '3 Siswa',
+                icon: 'fa-clapperboard',
+                color: 'text-rose-400',
+                roleDesc: 'Kamu adalah kapten kapal! Tugasmu memastikan seluruh 34 anak saling berkoordinasi, mencatat progres di logbook, dan memimpin latihan 30 menit.',
+                checklist: [
+                    'Gunakan timer HP: 20 menit latihan divisi mandiri + 10 menit evaluasi bareng guru.',
+                    'Tandatangani lembar logbook harian di meja guru pada akhir sesi.',
+                    'Jaga kekompakan kelas: semangati teman-teman dan hindari saling menyalahkan.'
+                ],
+                secretTip: '💡 <strong>Trik Rahasia:</strong> Berikan apresiasi dan tepuk tangan kecil setiap kali ada divisi yang berhasil menyelesaikan target latihannya!'
+            },
+            {
+                title: 'Tim Tata Suara & Editor Audio',
+                count: '2 Siswa',
+                icon: 'fa-sliders',
+                color: 'text-purple-400',
+                roleDesc: 'Kamu adalah DJ dan pengendali suasana! Tugasmu menggabungkan rekaman vokal teman-teman dengan lagu latar (BGM) dan sound effect (SFX).',
+                checklist: [
+                    'Gabungkan file rekaman vokal Babak 1, 2, dan 3 menjadi satu trek yang urut.',
+                    'Tambahkan efek suara lucu (sound effect tepuk tangan, bel, langkah kaki, dll.).',
+                    'Pastikan suara musik latar tidak menutupi suara percakapan dialog (turunkan volume BGM saat ada vokal).'
+                ],
+                secretTip: '💡 <strong>Trik Rahasia:</strong> Buat durasi total file audio maksimal 14 menit 30 detik, simpan file dalam format MP3 di flashdisk dan HP sebagai cadangan.'
+            },
+            {
+                title: 'Tim Properti, Kostum & Stage Crew',
+                count: '6 Siswa',
+                icon: 'fa-palette',
+                color: 'text-teal-400',
+                roleDesc: 'Kamu adalah pesulap visual panggung! Tugasmu membuat panggung tampak hidup dengan properti kardus ringan, kostum praktis, dan setting kilat.',
+                checklist: [
+                    'Buat properti aman dari kardus/kertas bekas (Dilarang menggunakan kaca, api, atau benda tajam).',
+                    'Siapkan aksesoris sederhana (iket Sunda, selendang, dasi, kacamata mainan).',
+                    'Latihan menata panggung dalam waktu maksimal 5 menit sebelum pementasan dimulai.'
+                ],
+                secretTip: '💡 <strong>Trik Rahasia:</strong> Selalu siapkan "Kotak Darurat" berisi lakban hitam, gunting, dan peniti di dekat pintu panggung!'
+            }
+        ];
+
+        // DATA 8 MISI PERTEMUAN (30 MENIT)
+        const missionData = [
+            { id: 1, week: 'Pekan 1', ses: 'Sesi 1', title: 'Pembagian Peran 34 Siswa & Ide Cerita', desc: 'Bagi seluruh teman sekelasmu ke dalam 6 divisi dan sepakati garis besar cerita kabaret 15 menit.', icon: 'fa-users' },
+            { id: 2, week: 'Pekan 1', ses: 'Sesi 2', title: 'Finishing Draf Dialog Naskah', desc: 'Tim penulis merapikan teks 3 bahasa, pastikan kalimat dialognya enak diucapkan dan tidak kaku.', icon: 'fa-pen-to-square' },
+            { id: 3, week: 'Pekan 2', ses: 'Sesi 3', title: 'Pemanasan Vokal & Artikulasi Suara', desc: '6 pengisi suara latihan membaca ekspresif, drill fonem Sunda & word stress Inggris.', icon: 'fa-microphone' },
+            { id: 4, week: 'Pekan 2', ses: 'Sesi 4', title: 'Perekaman Vokal & Desain Audio', desc: 'Ambil rekaman vokal per babak di ruang hening dan mulai pilih lagu latar (BGM) penunjang.', icon: 'fa-headphones' },
+            { id: 5, week: 'Pekan 3', ses: 'Sesi 5', title: 'Latihan Denah Posisi Panggung (Blocking)', desc: '14 aktor latihan tata letak berdiri di kelas, alur masuk (stage-in) dan alur keluar (stage-out).', icon: 'fa-person-walking' },
+            { id: 6, week: 'Pekan 3', ses: 'Sesi 6', title: 'Drill Gerak Bibir (Lip-Sync) Presisi', desc: 'Aktor panggung mencocokkan bukaan mulut over-artikulasi dengan draf audio playback.', icon: 'fa-masks-theater' },
+            { id: 7, week: 'Pekan 4', ses: 'Sesi 7', title: 'Simulasi Penuh 15 Menit Non-Stop', desc: 'Uji coba run-through dari babak 1 s.d. 3 menggunakan audio master dan properti kardus.', icon: 'fa-stopwatch' },
+            { id: 8, week: 'Pekan 4', ses: 'Sesi 8', title: 'Gladi Resik Kostum & Yel-Yel Juara', desc: 'Pemeriksaan akhir kostum sederhana, uji coba tata panggung 5 menit, dan booster percaya diri!', icon: 'fa-trophy' }
+        ];
+
+        let currentLang = 'indo';
+        let currentTab = 'materi';
+        let currentRoleIndex = 0;
+        let completedMissions = JSON.parse(localStorage.getItem('kabaret_missions') || '{}');
+
+        function init() {
+            renderLanguage();
+            renderRoleDetails();
+            renderMissions();
+        }
+
+        function changeLang(lang) {
+            currentLang = lang;
+            
+            // Update buttons
+            document.querySelectorAll('.lang-pill').forEach(btn => {
+                btn.className = 'lang-pill px-3 py-1.5 rounded-lg text-xs font-bold transition-all text-slate-400 hover:text-white flex items-center gap-1.5';
+            });
+            const active = document.getElementById(`btn-${lang}`);
+            if (active) {
+                if (lang === 'indo') active.className = 'lang-pill px-3 py-1.5 rounded-lg text-xs font-bold transition-all bg-indo-600 text-white shadow-sm flex items-center gap-1.5';
+                else if (lang === 'sunda') active.className = 'lang-pill px-3 py-1.5 rounded-lg text-xs font-bold transition-all bg-sunda-600 text-white shadow-sm flex items-center gap-1.5';
+                else if (lang === 'english') active.className = 'lang-pill px-3 py-1.5 rounded-lg text-xs font-bold transition-all bg-english-600 text-white shadow-sm flex items-center gap-1.5';
+                else if (lang === 'sinergi') active.className = 'lang-pill px-3 py-1.5 rounded-lg text-xs font-bold transition-all bg-sky-600 text-white shadow-sm flex items-center gap-1.5';
+            }
+
+            renderLanguage();
+        }
+
+        function setTab(tabName) {
+            currentTab = tabName;
+            
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('bg-sky-600', 'text-white', 'shadow');
+                btn.classList.add('text-slate-400');
+            });
+
+            const targetView = document.getElementById(`view-${tabName}`);
+            const targetBtn = document.getElementById(`tab-${tabName}`);
+
+            if (targetView) targetView.classList.remove('hidden');
+            if (targetBtn) {
+                targetBtn.classList.remove('text-slate-400');
+                targetBtn.classList.add('bg-sky-600', 'text-white', 'shadow');
+            }
+        }
+
+        function renderLanguage() {
+            const data = studentData[currentLang];
+
+            document.getElementById('hero-title').innerText = data.heroTitle;
+            document.getElementById('hero-subtitle').innerHTML = data.heroSubtitle;
+            
+            const badge = document.getElementById('hero-badge');
+            badge.className = `inline-flex items-center gap-2 text-xs font-bold px-3 py-1 rounded-full border ${data.badgeClass}`;
+            badge.innerHTML = data.badge;
+
+            // Render Dynamic Learning Content
+            const container = document.getElementById('dynamic-learning-content');
+            container.innerHTML = '';
+
+            data.sections.forEach(sec => {
+                const card = document.createElement('div');
+                card.className = 'bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-3 shadow-lg';
+                card.innerHTML = `
+                    <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800/80 pb-3">
+                        <div class="flex items-center gap-2.5">
+                            <div class="w-8 h-8 rounded-xl ${sec.bg} flex items-center justify-center ${sec.color} text-sm">
+                                <i class="fa-solid ${sec.icon}"></i>
+                            </div>
+                            <h3 class="text-sm sm:text-base font-bold text-white font-display">${sec.title}</h3>
+                        </div>
+                        <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-950 border border-slate-800 text-slate-400">${sec.badge}</span>
+                    </div>
+                    <div class="text-xs">${sec.body}</div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function selectRole(index) {
+            currentRoleIndex = index;
+            
+            const buttons = document.querySelectorAll('.role-btn');
+            buttons.forEach((b, i) => {
+                if (i === index) {
+                    b.className = 'role-btn active p-3 rounded-xl border bg-sky-950/60 border-sky-500 text-sky-300 text-center text-xs font-bold transition-all flex flex-col items-center gap-1.5';
+                } else {
+                    b.className = 'role-btn p-3 rounded-xl border bg-slate-900 border-slate-800 text-slate-400 hover:text-white text-center text-xs font-bold transition-all flex flex-col items-center gap-1.5';
+                }
+            });
+
+            renderRoleDetails();
+        }
+
+        function renderRoleDetails() {
+            const role = roleData[currentRoleIndex];
+            const card = document.getElementById('role-details-card');
+
+            card.innerHTML = `
+                <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800/80 pb-4 mb-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-2xl bg-sky-500/10 border border-sky-500/30 flex items-center justify-center ${role.color} text-xl">
+                            <i class="fa-solid ${role.icon}"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-bold text-white font-display">${role.title}</h4>
+                            <p class="text-xs text-slate-400">${role.roleDesc}</p>
+                        </div>
+                    </div>
+                    <span class="text-xs font-mono font-bold px-3 py-1 rounded-full bg-slate-950 border border-slate-800 text-sky-400">
+                        Alokasi: ${role.count}
+                    </span>
+                </div>
+
+                <div class="space-y-3 text-xs">
+                    <div class="font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-list-check text-sky-400"></i> Tugas Pokok Divisimu Selama 30 Menit di Kelas:
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        ${role.checklist.map((item, idx) => `
+                            <div class="p-3 bg-slate-950 rounded-xl border border-slate-800/80 space-y-1">
+                                <div class="w-5 h-5 rounded-full bg-sky-500/20 text-sky-400 font-bold font-mono text-[10px] flex items-center justify-center">${idx + 1}</div>
+                                <p class="text-slate-300 text-xs">${item}</p>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <div class="p-3 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-200 text-xs mt-3">
+                        ${role.secretTip}
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderMissions() {
+            const container = document.getElementById('mission-list-container');
+            container.innerHTML = '';
+
+            let doneCount = 0;
+
+            missionData.forEach(m => {
+                const isChecked = !!completedMissions[m.id];
+                if (isChecked) doneCount++;
+
+                const card = document.createElement('div');
+                card.className = `p-4 rounded-2xl border transition-all flex items-start gap-3 cursor-pointer ${
+                    isChecked ? 'bg-sky-950/40 border-sky-600/50' : 'bg-slate-900 border-slate-800 hover:border-slate-700'
+                }`;
+                card.onclick = () => toggleMission(m.id);
+
+                card.innerHTML = `
+                    <div class="mt-0.5">
+                        <input type="checkbox" ${isChecked ? 'checked' : ''} class="w-4 h-4 rounded text-sky-600 bg-slate-950 border-slate-700 cursor-pointer pointer-events-none">
+                    </div>
+                    <div class="space-y-1 flex-1">
+                        <div class="flex items-center justify-between">
+                            <span class="text-[10px] font-mono font-bold uppercase px-2 py-0.5 rounded bg-slate-950 text-sky-400 border border-slate-800">${m.week} • ${m.ses}</span>
+                            <i class="fa-solid ${m.icon} text-slate-500 text-xs"></i>
+                        </div>
+                        <h4 class="text-xs font-bold font-display ${isChecked ? 'line-through text-slate-400' : 'text-white'}">${m.title}</h4>
+                        <p class="text-[11px] ${isChecked ? 'text-slate-500' : 'text-slate-300'} leading-relaxed">${m.desc}</p>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+
+            document.getElementById('mission-counter').innerText = `${doneCount} / ${missionData.length} Misi Selesai`;
+        }
+
+        function toggleMission(id) {
+            completedMissions[id] = !completedMissions[id];
+            localStorage.setItem('kabaret_missions', JSON.stringify(completedMissions));
+            renderMissions();
+        }
+
+        window.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
