@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Modul Guru: Panduan 6 Pertemuan Pembekalan Kabaret Tiga Bahasa</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+    
+    :root {
+      --content-scale: 1rem; /* default 16px */
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Dynamic font scaling */
+    .scaled-text-base {
+      font-size: calc(var(--content-scale) * 1);
+      line-height: 1.6;
+    }
+
+    .scaled-text-lg {
+      font-size: calc(var(--content-scale) * 1.15);
+      line-height: 1.5;
+    }
+
+    .scaled-text-sm {
+      font-size: calc(var(--content-scale) * 0.9);
+      line-height: 1.55;
+    }
+
+    /* Active Tab Styling */
+    .tab-active {
+      border-bottom: 3px solid #2563eb;
+      color: #1d4ed8;
+      font-weight: 800;
+      background-color: #eff6ff;
+    }
+
+    /* Smooth touch horizontal scrollbar */
+    .scroll-touch {
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .scroll-touch::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* Print styling */
+    @media print {
+      header, .no-print {
+        display: none !important;
+      }
+      .content-section {
+        display: block !important;
+        page-break-after: always;
+      }
+    }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 min-h-screen flex flex-col antialiased">
+
+  <!-- TOP HEADER & MOBILE-OPTIMIZED CONTROLS -->
+  <header class="bg-white border-b-2 border-slate-200 sticky top-0 z-50 shadow-sm">
+    <div class="max-w-7xl mx-auto px-3 sm:px-4 py-2.5 sm:py-3">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+        
+        <!-- Title & School Branding -->
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-gradient-to-tr from-blue-700 to-indigo-600 text-white flex items-center justify-center font-black text-xl sm:text-2xl shadow-md shadow-blue-500/20 shrink-0">
+            <i class="fa-solid fa-masks-theater"></i>
+          </div>
+          <div class="min-w-0">
+            <div class="flex items-center gap-2 flex-wrap">
+              <h1 class="text-lg sm:text-xl md:text-2xl font-black text-slate-900 leading-tight">Modul Pembekalan Guru</h1>
+              <span class="bg-blue-100 text-blue-800 text-[10px] sm:text-xs font-extrabold px-2 py-0.5 rounded-full uppercase border border-blue-200 shrink-0">6 Pertemuan</span>
+            </div>
+            <p class="text-xs sm:text-sm font-semibold text-slate-500 truncate">Festival Kabaret 3 Bahasa • 15 Mins / Sesi</p>
+          </div>
+        </div>
+
+        <!-- Action Utilities: Responsive Font Zoom & Timer Bar -->
+        <div class="flex items-center justify-between sm:justify-end flex-wrap gap-2 pt-1 md:pt-0 border-t md:border-t-0 border-slate-100">
+          <!-- FONT SIZE ZOOM CONTROLLER -->
+          <div class="flex items-center bg-slate-100 px-2 sm:px-2.5 py-1 rounded-xl border border-slate-300 gap-1 sm:gap-1.5">
+            <span class="text-[11px] sm:text-xs font-bold text-slate-600 uppercase tracking-tight sm:tracking-wide">
+              <i class="fa-solid fa-text-height"></i>
+            </span>
+            <button onclick="setFontSize('normal')" id="btn-font-normal" class="px-2 py-1 text-[11px] sm:text-xs font-bold bg-white text-slate-700 rounded shadow-xs active:bg-slate-200 transition">Normal</button>
+            <button onclick="setFontSize('large')" id="btn-font-large" class="px-2 py-1 text-[11px] sm:text-xs font-bold bg-blue-600 text-white rounded shadow-xs active:bg-blue-700 transition">Besar</button>
+            <button onclick="setFontSize('xlarge')" id="btn-font-xlarge" class="px-2 py-1 text-[11px] sm:text-xs font-bold bg-white text-slate-700 rounded shadow-xs active:bg-slate-200 transition">XL</button>
+          </div>
+
+          <!-- 15-MINUTE BRIEFING TIMER -->
+          <div class="flex items-center bg-white px-2.5 sm:px-3 py-1 rounded-xl border-2 border-blue-200 shadow-xs gap-2">
+            <div class="text-[11px] sm:text-xs font-extrabold text-blue-900 uppercase flex items-center gap-1">
+              <i class="fa-solid fa-stopwatch text-blue-600"></i>
+              <span class="hidden sm:inline">Timer:</span>
+            </div>
+            <span id="timerDisplay" class="font-mono text-base sm:text-lg font-black text-blue-700 tracking-wider">15:00</span>
+            <div class="flex gap-1">
+              <button id="btnStart" onclick="startTimer()" class="px-2 py-1 text-[11px] sm:text-xs font-bold bg-blue-600 text-white rounded hover:bg-blue-700 active:scale-95 transition">Mulai</button>
+              <button id="btnPause" onclick="pauseTimer()" class="px-2 py-1 text-[11px] sm:text-xs font-bold bg-slate-200 text-slate-700 rounded hover:bg-slate-300 active:scale-95 transition">Jeda</button>
+              <button id="btnReset" onclick="resetTimer()" class="px-1.5 py-1 text-[11px] sm:text-xs font-bold bg-slate-100 text-slate-500 rounded hover:bg-slate-200 active:scale-95 transition"><i class="fa-solid fa-rotate-left"></i></button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 4 MAIN NAVIGATION TABS (TOUCH & HORIZONTAL SCROLL OPTIMIZED) -->
+    <nav class="max-w-7xl mx-auto px-2 sm:px-4 flex overflow-x-auto gap-1 sm:gap-2 text-xs sm:text-sm md:text-base font-bold border-t border-slate-200 scroll-touch bg-slate-50/90">
+      <button onclick="switchTab('umum')" id="tab-umum" class="nav-tab py-2.5 sm:py-3.5 px-3 sm:px-4 text-slate-600 hover:text-blue-700 flex items-center gap-1.5 sm:gap-2 tab-active whitespace-nowrap rounded-t-xl transition shrink-0">
+        <i class="fa-solid fa-layer-group text-sm sm:text-base"></i>
+        <span>1. Teknis & Roadmap</span>
+      </button>
+      <button onclick="switchTab('bindonesia')" id="tab-bindonesia" class="nav-tab py-2.5 sm:py-3.5 px-3 sm:px-4 text-slate-600 hover:text-red-700 flex items-center gap-1.5 sm:gap-2 whitespace-nowrap rounded-t-xl transition shrink-0">
+        <i class="fa-solid fa-book-bookmark text-red-600 text-sm sm:text-base"></i>
+        <span>2. B. Indonesia</span>
+      </button>
+      <button onclick="switchTab('bsunda')" id="tab-bsunda" class="nav-tab py-2.5 sm:py-3.5 px-3 sm:px-4 text-slate-600 hover:text-emerald-700 flex items-center gap-1.5 sm:gap-2 whitespace-nowrap rounded-t-xl transition shrink-0">
+        <i class="fa-solid fa-feather text-emerald-600 text-sm sm:text-base"></i>
+        <span>3. Basa Sunda</span>
+      </button>
+      <button onclick="switchTab('binggris')" id="tab-binggris" class="nav-tab py-2.5 sm:py-3.5 px-3 sm:px-4 text-slate-600 hover:text-indigo-700 flex items-center gap-1.5 sm:gap-2 whitespace-nowrap rounded-t-xl transition shrink-0">
+        <i class="fa-solid fa-earth-americas text-indigo-600 text-sm sm:text-base"></i>
+        <span>4. English Teacher</span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- MAIN CONTAINER (RESPONSIVE PADDING & FLOW) -->
+  <main class="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 py-5 sm:py-8 flex-1 w-full space-y-6 sm:space-y-8">
+
+    <!-- ============================================================== -->
+    <!-- TAB 1: FORMAT TEKNIS & ROADMAP UMUM 6 PERTEMUAN               -->
+    <!-- ============================================================== -->
+    <section id="sec-umum" class="content-section space-y-6 sm:space-y-8">
+      
+      <!-- HERO BANNER -->
+      <div class="bg-gradient-to-br from-slate-900 via-blue-950 to-indigo-900 rounded-2xl sm:rounded-3xl p-5 sm:p-8 text-white shadow-xl relative overflow-hidden border border-slate-700">
+        <div class="relative z-10 max-w-4xl space-y-2 sm:space-y-3">
+          <div class="inline-flex items-center gap-1.5 bg-blue-500/20 text-blue-300 text-[10px] sm:text-xs font-extrabold px-2.5 py-1 rounded-full uppercase tracking-wider border border-blue-400/30">
+            <i class="fa-solid fa-circle-info"></i> Kebijakan & Kerangka Pelaksanaan
+          </div>
+          <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight">Pedoman Guru & Manajemen 6 Pertemuan</h2>
+          <p class="scaled-text-lg text-slate-200">
+            Pagelaran Kabaret Tiga Bahasa dirancang murni sebagai wadah <strong>apresiasi literasi bahasa dan kreativitas panggung</strong> seluruh siswa, tanpa adanya tekanan perlombaan/ranking juara.
+          </p>
+        </div>
+      </div>
+
+      <!-- 4 ATURAN MODIFIKASI KHUSUS -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+        <div class="bg-white p-4 sm:p-6 rounded-2xl border-2 border-slate-200 shadow-xs flex flex-col justify-between">
+          <div>
+            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-lg sm:text-xl font-bold mb-3 sm:mb-4">
+              <i class="fa-solid fa-shuffle"></i>
+            </div>
+            <h3 class="text-base sm:text-lg font-black text-slate-900 mb-1.5">1. 3 Bahasa Dilebur</h3>
+            <p class="scaled-text-sm text-slate-600">Bukan pertunjukan 3 babak yang kaku. Bahasa Sunda, Indonesia, dan Inggris berbaur luwes sesuai karakter dan situasi adegan.</p>
+          </div>
+          <div class="mt-3 sm:mt-4 pt-3 border-t border-slate-100 text-emerald-700 font-bold text-xs uppercase tracking-wide">
+            <i class="fa-solid fa-circle-check mr-1"></i> Multi-lingual natural
+          </div>
+        </div>
+
+        <div class="bg-white p-4 sm:p-6 rounded-2xl border-2 border-slate-200 shadow-xs flex flex-col justify-between">
+          <div>
+            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center text-lg sm:text-xl font-bold mb-3 sm:mb-4">
+              <i class="fa-solid fa-award"></i>
+            </div>
+            <h3 class="text-base sm:text-lg font-black text-slate-900 mb-1.5">2. Murni Apresiasi</h3>
+            <p class="scaled-text-sm text-slate-600">Tidak ada persaingan menang-kalah antar-kelas. Seluruh kelas menerima Piagam Apresiasi Kategori Khusus sesuai keunggulan spesifik.</p>
+          </div>
+          <div class="mt-3 sm:mt-4 pt-3 border-t border-slate-100 text-amber-700 font-bold text-xs uppercase tracking-wide">
+            <i class="fa-solid fa-heart mr-1"></i> Ramah & membangun
+          </div>
+        </div>
+
+        <div class="bg-white p-4 sm:p-6 rounded-2xl border-2 border-slate-200 shadow-xs flex flex-col justify-between">
+          <div>
+            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center text-lg sm:text-xl font-bold mb-3 sm:mb-4">
+              <i class="fa-solid fa-users-gear"></i>
+            </div>
+            <h3 class="text-base sm:text-lg font-black text-slate-900 mb-1.5">3. Fleksibilitas Peran</h3>
+            <p class="scaled-text-sm text-slate-600">Daftar peran 34 siswa di buku panduan merupakan draf rujukan. Tiap kelas bebas memodifikasi susunan penugasan sesuai bakat anak.</p>
+          </div>
+          <div class="mt-3 sm:mt-4 pt-3 border-t border-slate-100 text-blue-700 font-bold text-xs uppercase tracking-wide">
+            <i class="fa-solid fa-hand-holding-hand mr-1"></i> 100% Inklusif
+          </div>
+        </div>
+
+        <div class="bg-white p-4 sm:p-6 rounded-2xl border-2 border-slate-200 shadow-xs flex flex-col justify-between">
+          <div>
+            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-rose-100 text-rose-700 flex items-center justify-center text-lg sm:text-xl font-bold mb-3 sm:mb-4">
+              <i class="fa-solid fa-stopwatch-20"></i>
+            </div>
+            <h3 class="text-base sm:text-lg font-black text-slate-900 mb-1.5">4. Disiplin 15 Menit</h3>
+            <p class="scaled-text-sm text-slate-600">Alokasi waktu panggung total per kelas adalah 15 menit: 3 menit pasang properti, 9 menit tampil kabaret, 3 menit beres-beres panggung.</p>
+          </div>
+          <div class="mt-3 sm:mt-4 pt-3 border-t border-slate-100 text-rose-700 font-bold text-xs uppercase tracking-wide">
+            <i class="fa-solid fa-gauge-high mr-1"></i> Manajemen waktu ketat
+          </div>
+        </div>
+      </div>
+
+      <!-- ILUSTRASI DETAIL ALOKASI 15 MENIT DI PANGGUNG -->
+      <div class="bg-white rounded-2xl sm:rounded-3xl border-2 border-slate-200 p-5 sm:p-8 shadow-xs space-y-4 sm:space-y-6">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center text-base sm:text-lg font-bold shrink-0">
+            <i class="fa-solid fa-clock"></i>
+          </div>
+          <div>
+            <h3 class="text-lg sm:text-xl font-black text-slate-900">Breakdown Simulasi Waktu Tampil 15 Menit</h3>
+            <p class="text-xs sm:text-sm font-semibold text-slate-500">Guru wajib mengingatkan ketua tim dan kru panggung untuk membiasakan pembagian waktu ini.</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+          <div class="border-2 border-amber-300 bg-amber-50/70 p-4 sm:p-6 rounded-2xl">
+            <div class="flex justify-between items-center mb-2 sm:mb-3">
+              <span class="text-2xl sm:text-3xl font-black text-amber-700 font-mono">03:00</span>
+              <span class="text-[10px] sm:text-xs font-bold uppercase bg-amber-200 text-amber-900 px-2.5 py-0.5 rounded-full">Fase 1</span>
+            </div>
+            <h4 class="text-sm sm:text-base font-bold text-slate-900 mb-1">Set Up & Posisi Awal</h4>
+            <p class="scaled-text-sm text-slate-700">Kru panggung menata properti modular (kursi/kardus lipat). Operator audio serahkan file master ke soundman sekolah. Aktor siap di *backstage*.</p>
+          </div>
+
+          <div class="border-2 border-blue-400 bg-blue-50/70 p-4 sm:p-6 rounded-2xl shadow-xs">
+            <div class="flex justify-between items-center mb-2 sm:mb-3">
+              <span class="text-2xl sm:text-3xl font-black text-blue-700 font-mono">09:00</span>
+              <span class="text-[10px] sm:text-xs font-bold uppercase bg-blue-200 text-blue-900 px-2.5 py-0.5 rounded-full">Fase 2 (Puncak)</span>
+            </div>
+            <h4 class="text-sm sm:text-base font-bold text-slate-900 mb-1">Pementasan Inti Kabaret</h4>
+            <p class="scaled-text-sm text-slate-700">Audio playback berjalan otomatis. Aktor tampil berakting dengan *lip-sync* presisi, pergantian gerak tari, dialog tiga bahasa, dan klimaks pesan cerita.</p>
+          </div>
+
+          <div class="border-2 border-emerald-300 bg-emerald-50/70 p-4 sm:p-6 rounded-2xl">
+            <div class="flex justify-between items-center mb-2 sm:mb-3">
+              <span class="text-2xl sm:text-3xl font-black text-emerald-700 font-mono">03:00</span>
+              <span class="text-[10px] sm:text-xs font-bold uppercase bg-emerald-200 text-emerald-900 px-2.5 py-0.5 rounded-full">Fase 3</span>
+            </div>
+            <h4 class="text-sm sm:text-base font-bold text-slate-900 mb-1">Pembersihan & Transisi</h4>
+            <p class="scaled-text-sm text-slate-700">Hormat apresiasi panggung (curtain call), kru panggung langsung mengangkut keluar seluruh properti. Panggung bersih untuk kelas berikutnya.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ROADMAP 6 PERTEMUAN UMUM -->
+      <div class="bg-white rounded-2xl sm:rounded-3xl border-2 border-slate-200 p-5 sm:p-8 shadow-xs space-y-4 sm:space-y-6">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-indigo-600 text-white flex items-center justify-center text-base sm:text-lg font-bold shrink-0">
+            <i class="fa-solid fa-calendar-days"></i>
+          </div>
+          <div>
+            <h3 class="text-lg sm:text-xl font-black text-slate-900">Roadmap 6 Pertemuan Pembekalan Guru (@ 15 Menit)</h3>
+            <p class="text-xs sm:text-sm font-semibold text-slate-500">Matriks pendampingan terpadu bagi guru mata pelajaran bahasa di kelas masing-masing.</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+          <div class="p-4 sm:p-5 rounded-2xl border border-slate-200 bg-slate-50 hover:border-blue-300 transition">
+            <span class="bg-blue-600 text-white text-[10px] sm:text-xs font-extrabold px-2.5 py-0.5 rounded-full uppercase">Pertemuan 1</span>
+            <h4 class="text-sm sm:text-base font-black text-slate-900 mt-2 mb-1">Penyusunan Ide & Plot 3 Bahasa</h4>
+            <p class="scaled-text-sm text-slate-600">Menentukan premis, pesan moral, dan memastikan cerita memuat konteks yang relevan untuk bahasa Sunda, Indonesia, dan Inggris.</p>
+          </div>
+
+          <div class="p-4 sm:p-5 rounded-2xl border border-slate-200 bg-slate-50 hover:border-blue-300 transition">
+            <span class="bg-blue-600 text-white text-[10px] sm:text-xs font-extrabold px-2.5 py-0.5 rounded-full uppercase">Pertemuan 2</span>
+            <h4 class="text-sm sm:text-base font-black text-slate-900 mt-2 mb-1">Peleburan Dialog & Karakterisasi</h4>
+            <p class="scaled-text-sm text-slate-600">Menulis dialog berbaur alami (bukan per babak), menyesuaikan idiom bahasa gaul, santun Sunda, dan percakapan Inggris yang luwes.</p>
+          </div>
+
+          <div class="p-4 sm:p-5 rounded-2xl border border-slate-200 bg-slate-50 hover:border-blue-300 transition">
+            <span class="bg-blue-600 text-white text-[10px] sm:text-xs font-extrabold px-2.5 py-0.5 rounded-full uppercase">Pertemuan 3</span>
+            <h4 class="text-sm sm:text-base font-black text-slate-900 mt-2 mb-1">Klinik Vokal & Rekaman Audio</h4>
+            <p class="scaled-text-sm text-slate-600">Pelatihan lafal, artikulasi, ekspresi emosi rekaman. Siswa pengisi suara merekam dialog master untuk audio playback panggung.</p>
+          </div>
+
+          <div class="p-4 sm:p-5 rounded-2xl border border-slate-200 bg-slate-50 hover:border-blue-300 transition">
+            <span class="bg-blue-600 text-white text-[10px] sm:text-xs font-extrabold px-2.5 py-0.5 rounded-full uppercase">Pertemuan 4</span>
+            <h4 class="text-sm sm:text-base font-black text-slate-900 mt-2 mb-1">Presisi Lip-Sync & Gestur Wajah</h4>
+            <p class="scaled-text-sm text-slate-600">Aktor panggung berlatih menyamakan gerak bibir dengan audio master, ekspresi mata, dan gerak tubuh teatrikal yang dilebihkan (*exaggerated*).</p>
+          </div>
+
+          <div class="p-4 sm:p-5 rounded-2xl border border-slate-200 bg-slate-50 hover:border-blue-300 transition">
+            <span class="bg-blue-600 text-white text-[10px] sm:text-xs font-extrabold px-2.5 py-0.5 rounded-full uppercase">Pertemuan 5</span>
+            <h4 class="text-sm sm:text-base font-black text-slate-900 mt-2 mb-1">Staging, Blocking, & Properti</h4>
+            <p class="scaled-text-sm text-slate-600">Pembagian zona panggung (kiri, tengah, kanan), latihan transisi keluar-masuk tokoh, serta pemakaian properti ringan berbahan kardus/kain.</p>
+          </div>
+
+          <div class="p-4 sm:p-5 rounded-2xl border border-slate-200 bg-slate-50 hover:border-blue-300 transition">
+            <span class="bg-blue-600 text-white text-[10px] sm:text-xs font-extrabold px-2.5 py-0.5 rounded-full uppercase">Pertemuan 6</span>
+            <h4 class="text-sm sm:text-base font-black text-slate-900 mt-2 mb-1">Simulasi Utuh 15 Menit & Evaluasi</h4>
+            <p class="scaled-text-sm text-slate-600">Uji coba lengkap menggunakan stopwatch (3 menit set properti + 9 menit pentas + 3 menit beres-beres) dan motivasi apresiasi siswa.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================== -->
+    <!-- TAB 2: PEMBEKALAN GURU BAHASA INDONESIA                       -->
+    <!-- ============================================================== -->
+    <section id="sec-bindonesia" class="content-section hidden space-y-6 sm:space-y-8">
+      
+      <!-- SUBHEADER -->
+      <div class="bg-gradient-to-r from-red-600 to-rose-700 rounded-2xl sm:rounded-3xl p-5 sm:p-8 text-white shadow-lg space-y-2">
+        <span class="bg-white/20 text-white text-[10px] sm:text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">Mata Pelajaran: Bahasa Indonesia</span>
+        <h2 class="text-2xl sm:text-3xl font-black">Panduan 6 Pertemuan: Struktur Narasi, Diksi, & Peneguh Karakter</h2>
+        <p class="scaled-text-base text-red-100 max-w-4xl">Bahasa Indonesia bertindak sebagai benang merah penceritaan, jembatan pengikat konflik, dan penegas pesan moral dalam pagelaran kabaret tiga bahasa.</p>
+      </div>
+
+      <!-- ILUSTRASI VISUAL BLOCKING PANGGUNG BAHASA INDONESIA (MOBILE RESPONSIVE DIAGRAM) -->
+      <div class="bg-white p-4 sm:p-6 rounded-2xl sm:rounded-3xl border-2 border-slate-200 shadow-xs space-y-4">
+        <h3 class="text-base sm:text-lg font-black text-slate-900 flex items-center gap-2">
+          <i class="fa-solid fa-compass-drafting text-red-600"></i> Ilustrasi Staging & Zona Blocking (Center Stage Anchor)
+        </h3>
+        <p class="scaled-text-sm text-slate-600">Tokoh Bahasa Indonesia umumnya memegang peran narator, pemimpin musyawarah kelas, atau penengah konflik antartokoh. Posisikan aktor di zona strategis agar vokal dan ekspresi terbaca jelas oleh seluruh audiens.</p>
+
+        <!-- VISUAL DIAGRAM RESPONSIVE -->
+        <div class="bg-slate-900 text-slate-100 rounded-xl sm:rounded-2xl p-4 sm:p-6 font-mono text-center space-y-3 sm:space-y-4">
+          <div class="text-slate-400 text-[10px] sm:text-xs tracking-widest border-b border-slate-800 pb-2">
+            [ LATAR BELAKANG PANGGUNG / PROYEKTOR ]
+          </div>
+          
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 py-2">
+            <!-- Stage Left -->
+            <div class="p-3 sm:p-4 rounded-xl bg-slate-800/90 border border-slate-700 text-left">
+              <div class="text-[11px] sm:text-xs font-bold text-emerald-400 mb-1"><i class="fa-solid fa-location-dot"></i> Panggung Kanan (SL)</div>
+              <div class="text-xs sm:text-sm font-bold text-white">Zona Interaksi Santai</div>
+              <p class="text-[11px] sm:text-xs text-slate-300 mt-1">Tokoh Sunda: Guyonan, obrolan akrab antarteman, latar rumah/warung.</p>
+            </div>
+
+            <!-- Center Stage -->
+            <div class="p-3 sm:p-4 rounded-xl bg-red-950/70 border-2 border-red-500 text-center shadow-lg">
+              <div class="text-[11px] sm:text-xs font-bold text-red-400 mb-1"><i class="fa-solid fa-star"></i> Tengah Panggung (Center)</div>
+              <div class="text-xs sm:text-sm font-extrabold text-white">Zona Narasi & Resolusi (B. Indonesia)</div>
+              <p class="text-[11px] sm:text-xs text-slate-300 mt-1">Titik fokus dialog penengah masalah, refleksi diri, dan pesan utama cerita.</p>
+            </div>
+
+            <!-- Stage Right -->
+            <div class="p-3 sm:p-4 rounded-xl bg-slate-800/90 border border-slate-700 text-left sm:text-right">
+              <div class="text-[11px] sm:text-xs font-bold text-indigo-400 mb-1"><i class="fa-solid fa-location-dot"></i> Panggung Kiri (SR)</div>
+              <div class="text-xs sm:text-sm font-bold text-white">Zona Dinamika Modern</div>
+              <p class="text-[11px] sm:text-xs text-slate-300 mt-1">Tokoh Inggris: Dialog ekspresif, kejutan, perdebatan modern.</p>
+            </div>
+          </div>
+
+          <div class="text-amber-400 text-[10px] sm:text-xs font-bold border-t border-slate-800 pt-2.5 tracking-wider">
+            ▼ AUDIENS & DEWAN GURU (SUDUT PANDANG DEPAN) ▼
+          </div>
+        </div>
+      </div>
+
+      <!-- RINCIAN 6 PERTEMUAN LENGKAP -->
+      <div class="space-y-4 sm:space-y-6">
+        <h3 class="text-lg sm:text-xl font-black text-slate-900 flex items-center gap-2">
+          <i class="fa-solid fa-chalkboard-user text-red-600"></i> Rencana Aksi Briefing 15 Menit: Pertemuan 1 s.d. 6
+        </h3>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+          
+          <!-- PERTEMUAN 1 -->
+          <div class="bg-white p-5 sm:p-6 rounded-2xl border-2 border-slate-200 shadow-xs space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="bg-red-100 text-red-800 text-[10px] sm:text-xs font-black px-2.5 py-0.5 rounded-full uppercase">Pertemuan 1</span>
+              <span class="text-xs font-bold text-slate-400"><i class="fa-solid fa-stopwatch mr-1"></i>15 Menit</span>
+            </div>
+            <h4 class="text-base sm:text-lg font-black text-slate-900">Penentuan Premis & Struktur Plot Tiga Bahasa</h4>
+            <div class="scaled-text-base text-slate-700 space-y-2">
+              <p><strong>Fokus Guru:</strong> Membimbing siswa menentukan tema cerita yang membumi (misal: kerja kelompok tugas sekolah, persiapan pentas seni, atau kepedulian lingkungan).</p>
+              <ul class="list-disc list-inside text-slate-600 scaled-text-sm space-y-1">
+                <li>Bantu tim naskah merumuskan: Siapa tokoh utama? Apa pemicu kesalahpahaman? Bagaimana ketiga bahasa hadir secara masuk akal?</li>
+                <li>Tegaskan prinsip <em>peleburan bahasa</em>: Hindari skenario di mana menit 1-3 Sunda, menit 4-6 Indonesia, menit 7-9 Inggris secara kaku.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- PERTEMUAN 2 -->
+          <div class="bg-white p-5 sm:p-6 rounded-2xl border-2 border-slate-200 shadow-xs space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="bg-red-100 text-red-800 text-[10px] sm:text-xs font-black px-2.5 py-0.5 rounded-full uppercase">Pertemuan 2</span>
+              <span class="text-xs font-bold text-slate-400"><i class="fa-solid fa-stopwatch mr-1"></i>15 Menit</span>
+            </div>
+            <h4 class="text-base sm:text-lg font-black text-slate-900">Bedah Dialog Bahasa Indonesia Sebagai Jangkar Cerita</h4>
+            <div class="scaled-text-base text-slate-700 space-y-2">
+              <p><strong>Fokus Guru:</strong> Memastikan pilihan kata (diksi) Bahasa Indonesia bernuansa komunikatif, tidak terlalu kaku seperti membaca buku pelajaran.</p>
+              <ul class="list-disc list-inside text-slate-600 scaled-text-sm space-y-1">
+                <li>Latih teknik <em>code-switching</em> (pergantian bahasa) yang halus di tengah dialog antarteman.</li>
+                <li>Contoh kalimat: <em>"Tenang kawan-kawan, daripada kita saling menyalahkan, lebih baik cari solusinya bareng-bareng."</em></li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- PERTEMUAN 3 -->
+          <div class="bg-white p-5 sm:p-6 rounded-2xl border-2 border-slate-200 shadow-xs space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="bg-red-100 text-red-800 text-[10px] sm:text-xs font-black px-2.5 py-0.5 rounded-full uppercase">Pertemuan 3</span>
+              <span class="text-xs font-bold text-slate-400"><i class="fa-solid fa-stopwatch mr-1"></i>15 Menit</span>
+            </div>
+            <h4 class="text-base sm:text-lg font-black text-slate-900">Pelatihan Vokal Studio & Rekaman Audio Master</h4>
+            <div class="scaled-text-base text-slate-700 space-y-2">
+              <p><strong>Fokus Guru:</strong> Mengawal kejernihan artikulasi suara siswa pengisi suara (Voice Over) sebelum digabung ke file playback.</p>
+              <ul class="list-disc list-inside text-slate-600 scaled-text-sm space-y-1">
+                <li>Latihan pernapasan diafragma singkat: tahan 4 detik, hembuskan dengan desis teratur.</li>
+                <li>Perjelas pengucapan konsonan akhir seperti /-k/, /-t/, /-p/, dan /-ng/ agar tidak tertelan musik latar panggung.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- PERTEMUAN 4 -->
+          <div class="bg-white p-5 sm:p-6 rounded-2xl border-2 border-slate-200 shadow-xs space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="bg-red-100 text-red-800 text-[10px] sm:text-xs font-black px-2.5 py-0.5 rounded-full uppercase">Pertemuan 4</span>
+              <span class="text-xs font-bold text-slate-400"><i class="fa-solid fa-stopwatch mr-1"></i>15 Menit</span>
+            </div>
+            <h4 class="text-base sm:text-lg font-black text-slate-900">Ketepatan Lip-Sync & Ekspresi Mimik Muka</h4>
+            <div class="scaled-text-base text-slate-700 space-y-2">
+              <p><strong>Fokus Guru:</strong> Melatih aktor panggung agar gerakan mulut dan ekspresi wajah sinkron 100% dengan rekaman suara Bahasa Indonesia.</p>
+              <ul class="list-disc list-inside text-slate-600 scaled-text-sm space-y-1">
+                <li>Trik panggung: Buka mulut 20% lebih lebar saat melafalkan kata seruan (misal: "Hebat!", "Awas!").</li>
+                <li>Latih aktor yang sedang tidak berdialog untuk tidak bengong, melainkan menunjukkan reaksi gerak (<em>reactive acting</em>).</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- PERTEMUAN 5 -->
+          <div class="bg-white p-5 sm:p-6 rounded-2xl border-2 border-slate-200 shadow-xs space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="bg-red-100 text-red-800 text-[10px] sm:text-xs font-black px-2.5 py-0.5 rounded-full uppercase">Pertemuan 5</span>
+              <span class="text-xs font-bold text-slate-400"><i class="fa-solid fa-stopwatch mr-1"></i>15 Menit</span>
+            </div>
+            <h4 class="text-base sm:text-lg font-black text-slate-900">Koreografi Transisi Panggung & Blocking Center</h4>
+            <div class="scaled-text-base text-slate-700 space-y-2">
+              <p><strong>Fokus Guru:</strong> Mengatur perpindahan aktor saat alur cerita beralih dari suasana tegang ke adegan musyawarah.</p>
+              <ul class="list-disc list-inside text-slate-600 scaled-text-sm space-y-1">
+                <li>Gunakan pola gerak segitiga panggung (pemeran utama di depan tengah, dua pendukung agak serong ke belakang).</li>
+                <li>Hindari aktor berdiri membelakangi audiens atau menutupi teman yang sedang mendapat sorotan adegan.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- PERTEMUAN 6 -->
+          <div class="bg-white p-5 sm:p-6 rounded-2xl border-2 border-slate-200 shadow-xs space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="bg-red-100 text-red-800 text-[10px] sm:text-xs font-black px-2.5 py-0.5 rounded-full uppercase">Pertemuan 6</span>
+              <span class="text-xs font-bold text-slate-400"><i class="fa-solid fa-stopwatch mr-1"></i>15 Menit</span>
+            </div>
+            <h4 class="text-base sm:text-lg font-black text-slate-900">Uji Coba Waktu 15 Menit & Penguatan Pesan Literasi</h4>
+            <div class="scaled-text-base text-slate-700 space-y-2">
+              <p><strong>Fokus Guru:</strong> Meninjau keselarasan pesan akhir cerita agar nilai Profil Pelajar Pancasila (gotong royong, toleransi) tersampaikan kuat.</p>
+              <ul class="list-disc list-inside text-slate-600 scaled-text-sm space-y-1">
+                <li>Pastikan durasi dialog penutup tidak bertele-tele (maksimal 1,5 menit menjelang akhir drama kabaret).</li>
+                <li>Berikan apresiasi penuh kepada seluruh tim untuk membangkitkan rasa bangga dan percaya diri.</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================== -->
+    <!-- TAB 3: PEMBEKALAN GURU BASA SUNDA                             -->
+    <!-- ============================================================== -->
+    <section id="sec-bsunda" class="content-section hidden space-y-6 sm:space-y-8">
+      
+      <!-- SUBHEADER -->
+      <div class="bg-gradient-to-r from-emerald-600 to-teal-700 rounded-2xl sm:rounded-3xl p-5 sm:p-8 text-white shadow-lg space-y-2">
+        <span class="bg-white/20 text-white text-[10px] sm:text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">Pangajaran: Basa Sunda</span>
+        <h2 class="text-2xl sm:text-3xl font-black">Pituduh 6 Pasamoan: Lentong, Fonem Mandiri, Rengkuh, & Bodoran Parahyangan</h2>
+        <p class="scaled-text-base text-emerald-100 max-w-4xl">Basa Sunda nyepeng pancén ngahudangkeun rasa mikanyaah budaya lemah cai, tatakrama nu marpar, sarta méré warna humor séhat (bodoran) dina pagelaran kabaret.</p>
+      </div>
+
+      <!-- ILUSTRASI GESTUR TATAKRAMA & PASEMON SUNDA -->
+      <div class="bg-white p-4 sm:p-6 rounded-2xl sm:rounded-3xl border-2 border-slate-200 shadow-xs space-y-4">
+        <h3 class="text-base sm:text-lg font-black text-slate-900 flex items-center gap-2">
+          <i class="fa-solid fa-person-walking text-emerald-600"></i> Ilustrasi Pasemon (Mimik) & Pasang Peta Rengkuh Kasundaan
+        </h3>
+        <p class="scaled-text-sm text-slate-600">Dina pagelaran kabaret, basa Sunda henteu ngan saukur ucapan, tapi katémbong dina rengkuh awak anu lemes jeung pasemon marahmay.</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5">
+          <div class="p-4 sm:p-5 rounded-2xl bg-emerald-50/70 border border-emerald-200 flex flex-col items-center text-center">
+            <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-emerald-600 text-white flex items-center justify-center text-xl sm:text-2xl font-bold mb-3 shadow-md">
+              <i class="fa-solid fa-person-praying"></i>
+            </div>
+            <h4 class="font-bold text-slate-900 text-sm sm:text-base mb-1">Rengkuh Nyuhunkeun Widi</h4>
+            <p class="scaled-text-sm text-slate-600">Awak rada condong ka payun 15 derajat, panangan katuhu nyolongkrong ngagupay handap, tanda ngajénan ka babaturan atawa kolot.</p>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-emerald-50/70 border border-emerald-200 flex flex-col items-center text-center">
+            <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-emerald-600 text-white flex items-center justify-center text-xl sm:text-2xl font-bold mb-3 shadow-md">
+              <i class="fa-solid fa-face-laugh-squint"></i>
+            </div>
+            <h4 class="font-bold text-slate-900 text-sm sm:text-base mb-1">Pasemon Marahmay (Bodoran)</h4>
+            <p class="scaled-text-sm text-slate-600">Raray gumbira, panon buringas, biwir maén nalika nyaritakeun celetukan Sunda anu matak ngahudang seuri barudak sakola.</p>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-emerald-50/70 border border-emerald-200 flex flex-col items-center text-center">
+            <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-emerald-600 text-white flex items-center justify-center text-xl sm:text-2xl font-bold mb-3 shadow-md">
+              <i class="fa-solid fa-drum"></i>
+            </div>
+            <h4 class="font-bold text-slate-900 text-sm sm:text-base mb-1">Luyu Jeung Wirahma</h4>
+            <p class="scaled-text-sm text-slate-600">Gerakan awak luyu jeung ketukan calung, kendang, atawa lagu pop Sunda modéren anu jadi latar audio panggung.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- RINCIAN 6 PERTEMUAN SUNDA -->
+      <div class="space-y-4 sm:space-y-6">
+        <h3 class="text-lg sm:text-xl font-black text-slate-900 flex items-center gap-2">
+          <i class="fa-solid fa-feather-pointed text-emerald-600"></i> Rencana Bimbingan 15 Menit: Pasamoan ka-1 dugi ka-6
+        </h3>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+          
+          <!-- PASAMOAN 1 -->
+          <div class="bg-white p-5 sm:p-6 rounded-2xl border-2 border-slate-200 shadow-xs space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="bg-emerald-100 text-emerald-800 text-[10px] sm:text-xs font-black px-2.5 py-0.5 rounded-full uppercase">Pasamoan 1</span>
+              <span class="text-xs font-bold text-slate-400"><i class="fa-solid fa-stopwatch mr-1"></i>15 Menit</span>
+            </div>
+            <h4 class="text-base sm:text-lg font-black text-slate-900">Milih Carita & Karakter Tokoh Urang Sunda</h4>
+            <div class="scaled-text-base text-slate-700 space-y-2">
+              <p><strong>Tugas Guru:</strong> Maparin bimbingan sangkan karakter urang Sunda henteu dijieun kampungan, tapi némbongkeun budi pekerti luhur jeung cerdas.</p>
+              <ul class="list-disc list-inside text-slate-600 scaled-text-sm space-y-1">
+                <li>Bantu siswa nuliskeun ide adegan: contona pas keur silih tulungan ngerjakeun pancén atawa ulin di buruan sakola.</li>
+                <li>Pastikeun ayana kasaluyuan antara carita Sunda jeung carita basa séjénna dina sapanggung.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- PASAMOAN 2 -->
+          <div class="bg-white p-5 sm:p-6 rounded-2xl border-2 border-slate-200 shadow-xs space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="bg-emerald-100 text-emerald-800 text-[10px] sm:text-xs font-black px-2.5 py-0.5 rounded-full uppercase">Pasamoan 2</span>
+              <span class="text-xs font-bold text-slate-400"><i class="fa-solid fa-stopwatch mr-1"></i>15 Menit</span>
+            </div>
+            <h4 class="text-base sm:text-lg font-black text-slate-900">Ngarakit Paguneman Loma & Bodoran Anu Merenah</h4>
+            <div class="scaled-text-base text-slate-700 space-y-2">
+              <p><strong>Tugas Guru:</strong> Ngaping panyusunan paguneman basa Sunda ragam loma anu akrab antar babaturan sapantaran.</p>
+              <ul class="list-disc list-inside text-slate-600 scaled-text-sm space-y-1">
+                <li>Hindarkeun kekecapan kasar anu teu payus di lingkungan atikan (sakola).</li>
+                <li>Conto dialog: <em>"Har, naha bet kitu? Kapan kamari téh urang geus jangji rék latihan sasarengan di aula!"</em></li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- PASAMOAN 3 -->
+          <div class="bg-white p-5 sm:p-6 rounded-2xl border-2 border-slate-200 shadow-xs space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="bg-emerald-100 text-emerald-800 text-[10px] sm:text-xs font-black px-2.5 py-0.5 rounded-full uppercase">Pasamoan 3</span>
+              <span class="text-xs font-bold text-slate-400"><i class="fa-solid fa-stopwatch mr-1"></i>15 Menit</span>
+            </div>
+            <h4 class="text-base sm:text-lg font-black text-slate-900">Latihan Fonem Mandiri [e], [é], [eu] dina Rekaman</h4>
+            <div class="scaled-text-base text-slate-700 space-y-2">
+              <p><strong>Tugas Guru:</strong> Ngaroris pangucapan vokal siswa nalika *take vocal* audio supados henteu patukeur.</p>
+              <ul class="list-disc list-inside text-slate-600 scaled-text-sm space-y-1">
+                <li>Latihan ngabedakeun: <em>peuting</em> [eu], <em>békot</em> [é], jeung <em>bener</em> [e].</li>
+                <li>Lentong Sunda diatur lemes tur dinamik, henteu datar jiga nu keur maca sajak biasa.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- PASAMOAN 4 -->
+          <div class="bg-white p-5 sm:p-6 rounded-2xl border-2 border-slate-200 shadow-xs space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="bg-emerald-100 text-emerald-800 text-[10px] sm:text-xs font-black px-2.5 py-0.5 rounded-full uppercase">Pasamoan 4</span>
+              <span class="text-xs font-bold text-slate-400"><i class="fa-solid fa-stopwatch mr-1"></i>15 Menit</span>
+            </div>
+            <h4 class="text-base sm:text-lg font-black text-slate-900">Latihan Pasemon Raray & Kacepetan Lip-Sync</h4>
+            <div class="scaled-text-base text-slate-700 space-y-2">
+              <p><strong>Tugas Guru:</strong> Ngabimbing aktor panggung dina nyocogkeun lambey jeung sora rekaman anu gancang dina dialog bodoran.</p>
+              <ul class="list-disc list-inside text-slate-600 scaled-text-sm space-y-1">
+                <li>Latih ekspresi reuwah (kaget), atoh (gembira), atawa bingung kalayan pasemon anu atra ti kajauhan.</li>
+                <li>Ulah sieun nembongkeun éksprési anu teuneung jeung ludeung dina panggung.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- PASAMOAN 5 -->
+          <div class="bg-white p-5 sm:p-6 rounded-2xl border-2 border-slate-200 shadow-xs space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="bg-emerald-100 text-emerald-800 text-[10px] sm:text-xs font-black px-2.5 py-0.5 rounded-full uppercase">Pasamoan 5</span>
+              <span class="text-xs font-bold text-slate-400"><i class="fa-solid fa-stopwatch mr-1"></i>15 Menit</span>
+            </div>
+            <h4 class="text-base sm:text-lg font-black text-slate-900">Staging Rampak & Parabot (Properti) Basajan</h4>
+            <div class="scaled-text-base text-slate-700 space-y-2">
+              <p><strong>Tugas Guru:</strong> Ngatur posisi blocking kelompok Sunda sangkan henteu ngagunduk di hiji juru panggung.</p>
+              <ul class="list-disc list-inside text-slate-600 scaled-text-sm space-y-1">
+                <li>Manpaatkeun parabot lokal anu hampang, sapertos boboko kardus, totopong, atawa samping poleng.</li>
+                <li>Koreografi gerak rampak diatur rapih bari teu meakkeun waktu panggung anu heureut.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- PASAMOAN 6 -->
+          <div class="bg-white p-5 sm:p-6 rounded-2xl border-2 border-slate-200 shadow-xs space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="bg-emerald-100 text-emerald-800 text-[10px] sm:text-xs font-black px-2.5 py-0.5 rounded-full uppercase">Pasamoan 6</span>
+              <span class="text-xs font-bold text-slate-400"><i class="fa-solid fa-stopwatch mr-1"></i>15 Menit</span>
+            </div>
+            <h4 class="text-base sm:text-lg font-black text-slate-900">Gladi Resik & Apresiasi Karakter Kasundaan</h4>
+            <div class="scaled-text-base text-slate-700 space-y-2">
+              <p><strong>Tugas Guru:</strong> Evaluasi akhir sakabéh adegan basa Sunda sangkan geus ngahiji kalayan loyog jeung basa séjénna.</p>
+              <ul class="list-disc list-inside text-slate-600 scaled-text-sm space-y-1">
+                <li>Cék waktu: naha porsi carita Sunda geus pas jeung alokasi 9 menit pementasan inti?</li>
+                <li>Tepuk leungeun jeung piagem apresiasi disiapkeun pikeun ngagedékeun haté para siswa.</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================== -->
+    <!-- TAB 4: PEMBEKALAN GURU BAHASA INGGRIS (ENGLISH TEACHER)       -->
+    <!-- ============================================================== -->
+    <section id="sec-binggris" class="content-section hidden space-y-6 sm:space-y-8">
+      
+      <!-- SUBHEADER -->
+      <div class="bg-gradient-to-r from-indigo-700 via-blue-700 to-indigo-900 rounded-2xl sm:rounded-3xl p-5 sm:p-8 text-white shadow-lg space-y-2">
+        <span class="bg-white/20 text-white text-[10px] sm:text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">Subject: English Language</span>
+        <h2 class="text-2xl sm:text-3xl font-black">6-Meeting Coaching Plan: Natural Chunks, Punchy Delivery, & Energetic Staging</h2>
+        <p class="scaled-text-base text-indigo-100 max-w-4xl">English breathes modernity, excitement, and dynamic punchlines into the cabaret, allowing students to practice practical communicative English with great stage confidence.</p>
+      </div>
+
+      <!-- ILUSTRASI / STAGE BODY LANGUAGE ENGLISH -->
+      <div class="bg-white p-4 sm:p-6 rounded-2xl sm:rounded-3xl border-2 border-slate-200 shadow-xs space-y-4">
+        <h3 class="text-base sm:text-lg font-black text-slate-900 flex items-center gap-2">
+          <i class="fa-solid fa-bolt text-indigo-600"></i> Visual Cue: High-Energy English Stage Gestures
+        </h3>
+        <p class="scaled-text-sm text-slate-600">Because English lines in cabaret usually carry comedic contrast or sudden excitement, train actors to pair speech with bold physical presence.</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5">
+          <div class="p-4 sm:p-5 rounded-2xl bg-indigo-50/70 border border-indigo-200 flex flex-col items-center text-center">
+            <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-indigo-600 text-white flex items-center justify-center text-xl sm:text-2xl font-bold mb-3 shadow-md">
+              <i class="fa-solid fa-hands-clapping"></i>
+            </div>
+            <h4 class="font-bold text-slate-900 text-sm sm:text-base mb-1">Open-Palm Surprise</h4>
+            <p class="scaled-text-sm text-slate-600">Throwing both hands outward while widening eyes on phrases like: <em>"Are you kidding me?"</em> or <em>"No way!"</em> to emphasize disbelief.</p>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-indigo-50/70 border border-indigo-200 flex flex-col items-center text-center">
+            <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-indigo-600 text-white flex items-center justify-center text-xl sm:text-2xl font-bold mb-3 shadow-md">
+              <i class="fa-solid fa-arrow-turn-up"></i>
+            </div>
+            <h4 class="font-bold text-slate-900 text-sm sm:text-base mb-1">The Punchline Step</h4>
+            <p class="scaled-text-sm text-slate-600">Stepping one stride forward towards the front audience row right when delivering the key English idiom to maximize comedic timing.</p>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-indigo-50/70 border border-indigo-200 flex flex-col items-center text-center">
+            <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-indigo-600 text-white flex items-center justify-center text-xl sm:text-2xl font-bold mb-3 shadow-md">
+              <i class="fa-solid fa-people-group"></i>
+            </div>
+            <h4 class="font-bold text-slate-900 text-sm sm:text-base mb-1">Ensemble Freeze-Frame</h4>
+            <p class="scaled-text-sm text-slate-600">Background dancers instantly freeze in exaggerated poses while the speaker delivers the punchy English line.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- RINCIAN 6 MEETINGS LENGKAP -->
+      <div class="space-y-4 sm:space-y-6">
+        <h3 class="text-lg sm:text-xl font-black text-slate-900 flex items-center gap-2">
+          <i class="fa-solid fa-graduation-cap text-indigo-600"></i> 15-Minute Meeting Action Guides: Meetings 1 to 6
+        </h3>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+          
+          <!-- MEETING 1 -->
+          <div class="bg-white p-5 sm:p-6 rounded-2xl border-2 border-slate-200 shadow-xs space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="bg-indigo-100 text-indigo-800 text-[10px] sm:text-xs font-black px-2.5 py-0.5 rounded-full uppercase">Meeting 1</span>
+              <span class="text-xs font-bold text-slate-400"><i class="fa-solid fa-stopwatch mr-1"></i>15 Mins</span>
+            </div>
+            <h4 class="text-base sm:text-lg font-black text-slate-900">Integrating English into the Story Concept</h4>
+            <div class="scaled-text-base text-slate-700 space-y-2">
+              <p><strong>Teacher Briefing:</strong> Help students establish natural reasons for speaking English within the school storyline (e.g., watching trending videos, preparing a class project, welcoming an exchange guest).</p>
+              <ul class="list-disc list-inside text-slate-600 scaled-text-sm space-y-1">
+                <li>Avoid intimidating long sentences; focus on communicative short phrases.</li>
+                <li>Ensure equal collaboration with the Indonesian and Sundanese scriptwriters.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- MEETING 2 -->
+          <div class="bg-white p-5 sm:p-6 rounded-2xl border-2 border-slate-200 shadow-xs space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="bg-indigo-100 text-indigo-800 text-[10px] sm:text-xs font-black px-2.5 py-0.5 rounded-full uppercase">Meeting 2</span>
+              <span class="text-xs font-bold text-slate-400"><i class="fa-solid fa-stopwatch mr-1"></i>15 Mins</span>
+            </div>
+            <h4 class="text-base sm:text-lg font-black text-slate-900">Script Polishing: Punchy Idioms & Seamless Blending</h4>
+            <div class="scaled-text-base text-slate-700 space-y-2">
+              <p><strong>Teacher Briefing:</strong> Guide writers to write catchy, teenage-friendly expressions rather than formal textbook language.</p>
+              <ul class="list-disc list-inside text-slate-600 scaled-text-sm space-y-1">
+                <li>Example dialogue blending: <em>"Wait, are you serious? Tong heureuy atuh, Cecep! We only have two days left!"</em></li>
+                <li>Teach conversational markers like <em>"Look," "Listen," "Come on,"</em> to initiate energetic interactions.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- MEETING 3 -->
+          <div class="bg-white p-5 sm:p-6 rounded-2xl border-2 border-slate-200 shadow-xs space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="bg-indigo-100 text-indigo-800 text-[10px] sm:text-xs font-black px-2.5 py-0.5 rounded-full uppercase">Meeting 3</span>
+              <span class="text-xs font-bold text-slate-400"><i class="fa-solid fa-stopwatch mr-1"></i>15 Mins</span>
+            </div>
+            <h4 class="text-base sm:text-lg font-black text-slate-900">Pronunciation Clinic & Voice Recording Session</h4>
+            <div class="scaled-text-base text-slate-700 space-y-2">
+              <p><strong>Teacher Briefing:</strong> Coach voice-over actors on word stress, clear vowels, and projection without stressing over a perfect native accent.</p>
+              <ul class="list-disc list-inside text-slate-600 scaled-text-sm space-y-1">
+                <li>Emphasize intonation rise and fall to match comedic and dramatic moments.</li>
+                <li>Practice clear consonants like /th/, /sh/, and /ch/ so lines don't sound muffled in the audio playback.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- MEETING 4 -->
+          <div class="bg-white p-5 sm:p-6 rounded-2xl border-2 border-slate-200 shadow-xs space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="bg-indigo-100 text-indigo-800 text-[10px] sm:text-xs font-black px-2.5 py-0.5 rounded-full uppercase">Meeting 4</span>
+              <span class="text-xs font-bold text-slate-400"><i class="fa-solid fa-stopwatch mr-1"></i>15 Mins</span>
+            </div>
+            <h4 class="text-base sm:text-lg font-black text-slate-900">Precision Lip-Syncing to Fast-Paced Audio</h4>
+            <div class="scaled-text-base text-slate-700 space-y-2">
+              <p><strong>Teacher Briefing:</strong> Train stage actors to anticipate the audio timing so their mouth movements don't lag behind the recorded dialogue.</p>
+              <ul class="list-disc list-inside text-slate-600 scaled-text-sm space-y-1">
+                <li>Actor rehearsal tip: Silently mouth every syllable firmly, matching head tilts and body rhythm.</li>
+                <li>Use mirror drills in small groups to build confidence and comedic facial expressions.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- MEETING 5 -->
+          <div class="bg-white p-5 sm:p-6 rounded-2xl border-2 border-slate-200 shadow-xs space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="bg-indigo-100 text-indigo-800 text-[10px] sm:text-xs font-black px-2.5 py-0.5 rounded-full uppercase">Meeting 5</span>
+              <span class="text-xs font-bold text-slate-400"><i class="fa-solid fa-stopwatch mr-1"></i>15 Mins</span>
+            </div>
+            <h4 class="text-base sm:text-lg font-black text-slate-900">Dynamic Stage Blocking & Musical Pop Cues</h4>
+            <div class="scaled-text-base text-slate-700 space-y-2">
+              <p><strong>Teacher Briefing:</strong> Rehearse stage entries, group formation changes, and prop handovers during upbeat pop/rock background tracks.</p>
+              <ul class="list-disc list-inside text-slate-600 scaled-text-sm space-y-1">
+                <li>Make sure English characters transition smoothly with Sundanese characters on stage left/right.</li>
+                <li>Keep props portable and quick to rearrange to adhere strictly to the 15-minute stage limit.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- MEETING 6 -->
+          <div class="bg-white p-5 sm:p-6 rounded-2xl border-2 border-slate-200 shadow-xs space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="bg-indigo-100 text-indigo-800 text-[10px] sm:text-xs font-black px-2.5 py-0.5 rounded-full uppercase">Meeting 6</span>
+              <span class="text-xs font-bold text-slate-400"><i class="fa-solid fa-stopwatch mr-1"></i>15 Mins</span>
+            </div>
+            <h4 class="text-base sm:text-lg font-black text-slate-900">Final Dress Run-Through & Morale Boosting</h4>
+            <div class="scaled-text-base text-slate-700 space-y-2">
+              <p><strong>Teacher Briefing:</strong> Run a full timed rehearsal with the master audio track and inspire students to showcase their collective hard work.</p>
+              <ul class="list-disc list-inside text-slate-600 scaled-text-sm space-y-1">
+                <li>Check the 15-minute stopwatch: 3 mins setup + 9 mins performance + 3 mins clear-stage.</li>
+                <li>Remind students: It's all about appreciation, teamwork, and enjoying their moment under the stage lights!</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-white border-t-2 border-slate-200 py-3 sm:py-4 text-center text-xs sm:text-sm font-semibold text-slate-500 shadow-inner px-4">
+    Modul Pembekalan Guru • Festival Pagelaran Kabaret Tiga Bahasa • Didesain untuk Efektivitas Bimbingan Kelas
+  </footer>
+
+  <!-- SCRIPT LOGIC (SPA TAB SWITCHING, ZOOM FONT, & TIMER) -->
+  <script>
+    // 1. TAB SWITCHING LOGIC
+    function switchTab(tabKey) {
+      document.querySelectorAll('.content-section').forEach(sec => sec.classList.add('hidden'));
+      document.querySelectorAll('.nav-tab').forEach(btn => btn.classList.remove('tab-active'));
+
+      const targetSec = document.getElementById('sec-' + tabKey);
+      const targetTab = document.getElementById('tab-' + tabKey);
+
+      if (targetSec) targetSec.classList.remove('hidden');
+      if (targetTab) targetTab.classList.add('tab-active');
+
+      // Scroll smoothly to top of content
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // 2. FONT SIZE SCALING LOGIC (AGAR TEKS BISA DIBESARKAN SESUAI LAYAR)
+    function setFontSize(size) {
+      const root = document.documentElement;
+      const btnNormal = document.getElementById('btn-font-normal');
+      const btnLarge = document.getElementById('btn-font-large');
+      const btnXLarge = document.getElementById('btn-font-xlarge');
+
+      [btnNormal, btnLarge, btnXLarge].forEach(b => {
+        b.className = "px-2 py-1 text-[11px] sm:text-xs font-bold bg-white text-slate-700 rounded shadow-xs active:bg-slate-200 transition";
+      });
+
+      if (size === 'normal') {
+        root.style.setProperty('--content-scale', '0.95rem');
+        btnNormal.className = "px-2 py-1 text-[11px] sm:text-xs font-bold bg-blue-600 text-white rounded shadow-xs active:bg-blue-700 transition";
+      } else if (size === 'large') {
+        root.style.setProperty('--content-scale', '1.12rem'); // Ideal large
+        btnLarge.className = "px-2 py-1 text-[11px] sm:text-xs font-bold bg-blue-600 text-white rounded shadow-xs active:bg-blue-700 transition";
+      } else if (size === 'xlarge') {
+        root.style.setProperty('--content-scale', '1.28rem'); // Extra large
+        btnXLarge.className = "px-2 py-1 text-[11px] sm:text-xs font-bold bg-blue-600 text-white rounded shadow-xs active:bg-blue-700 transition";
+      }
+    }
+
+    // Set initial font size to 'large'
+    setFontSize('large');
+
+    // 3. INTERACTIVE 15-MINUTE BRIEFING TIMER
+    let timerInterval = null;
+    let totalSeconds = 15 * 60;
+
+    function updateDisplay() {
+      const min = Math.floor(totalSeconds / 60);
+      const sec = totalSeconds % 60;
+      document.getElementById('timerDisplay').innerText = 
+        `${String(min).padStart(2, '0')}:${String(sec).padStart(2, '0')}`;
+    }
+
+    function startTimer() {
+      if (timerInterval) return;
+      timerInterval = setInterval(() => {
+        if (totalSeconds > 0) {
+          totalSeconds--;
+          updateDisplay();
+        } else {
+          clearInterval(timerInterval);
+          timerInterval = null;
+          alert('⏰ Sesi pembekalan 15 menit telah selesai! Silakan lanjutkan ke aktivitas inti.');
+        }
+      }, 1000);
+    }
+
+    function pauseTimer() {
+      clearInterval(timerInterval);
+      timerInterval = null;
+    }
+
+    function resetTimer() {
+      pauseTimer();
+      totalSeconds = 15 * 60;
+      updateDisplay();
+    }
+  </script>
+</body>
+</html>
